@@ -3,9 +3,18 @@
 <html>
 	<head>
 		<title>Tenjin</title>
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
+		/>
 	</head>
 
 	<body>
-		Tenjin!
+		<script type="module">
+			import { html, render } from "https://unpkg.com/lit?module";
+			import landingPage from "./landing-page/index.js";
+
+			render(landingPage(), document.body);
+		</script>
 	</body>
 </html>
