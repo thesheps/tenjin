@@ -1,0 +1,34 @@
+{
+	"name": "tenjin",
+	"version": "1.0.0",
+	"description": "",
+	"keywords": [],
+	"homepage": "https://github.com/thesheps/tenjin#readme",
+	"bugs": {
+		"url": "https://github.com/thesheps/tenjin/issues"
+	},
+	"jest": {
+		"preset": "jest-puppeteer"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/thesheps/tenjin.git"
+	},
+	"license": "ISC",
+	"author": "Chris Shepherd",
+	"main": "index.js",
+	"scripts": {
+		"start": "env-cmd node server.js",
+		"test": "env-cmd jest"
+	},
+	"dependencies": {
+		"lit-html": "^2.2.0"
+	},
+	"devDependencies": {
+		"env-cmd": "^10.1.0",
+		"http-server": "^14.1.0",
+		"jest": "^27.5.1",
+		"jest-dev-server": "^6.0.3",
+		"jest-puppeteer": "^6.1.0"
+	}
+}
