@@ -7,9 +7,6 @@
 	"bugs": {
 		"url": "https://github.com/thesheps/tenjin/issues"
 	},
-	"jest": {
-		"preset": "jest-puppeteer"
-	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/thesheps/tenjin.git"
@@ -20,6 +17,9 @@
 	"scripts": {
 		"start": "env-cmd node server.js",
 		"test": "env-cmd jest"
+	},
+	"jest": {
+		"preset": "jest-puppeteer"
 	},
 	"dependencies": {
 		"lit-html": "^2.2.0"

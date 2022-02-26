@@ -1,5 +1,1 @@
-module.exports = {
-	server: {
-		command: "node server.js",
-	},
-};
+module.exports = { server: { command: "node server.js" } };
