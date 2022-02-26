@@ -9,6 +9,7 @@ jobs:
 
       - name: Install and Test 🧪
         run: |
+          cp .env-default .env
           npm ci
           npm t
 
