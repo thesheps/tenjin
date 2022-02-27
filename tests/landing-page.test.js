@@ -10,9 +10,8 @@ describe("Landing Page", () => {
 	});
 
 	it("Has the expected splash message", async () => {
-		const element = await page.$(".header");
-		const text = await page.evaluate((element) => element.textContent, element);
-
-		expect(text).toBe("Tenjin.");
+		await expect(page).toMatch("Welcome to Tenjin!", {
+			traverseShadowRoots: true,
+		});
 	});
 });

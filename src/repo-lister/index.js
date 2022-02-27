@@ -1,3 +1,9 @@
-import { html } from "https://unpkg.com/lit?module";
+import { html, LitElement } from "https://unpkg.com/lit?module";
 
-export default () => html`<div>Lister</div>`;
+class RepoLister extends LitElement {
+	render() {
+		return html`<div>Repo Lister</div>`;
+	}
+}
+
+customElements.define("repo-lister", RepoLister);
