@@ -11,7 +11,7 @@
 		"type": "git",
 		"url": "git+https://github.com/thesheps/tenjin.git"
 	},
-	"license": "ISC",
+	"license": "MIT",
 	"author": "Chris Shepherd",
 	"main": "index.js",
 	"scripts": {
