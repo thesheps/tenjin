@@ -4,12 +4,36 @@ import TenjinElement from "../tenjin-element.js";
 class GithubLogin extends TenjinElement {
 	static styles = super.styles;
 
+	static get properties() {
+		return {
+			canSubmit: { type: Boolean },
+		};
+	}
+
+	updated() {
+		console.log(this.canSubmit);
+	}
+
+	isTextEntered(id) {
+		return this.shadowRoot.getElementById(id).value.length > 0;
+	}
+
+	handleChange() {
+		this.canSubmit =
+			this.isTextEntered("access-token") && this.isTextEntered("git-user");
+	}
+
+	handleClick(e) {
+		e.preventDefault();
+	}
+
 	render() {
 		return html`<form id="github-login">
 			<div class="grid">
 				<label for="access-token">
 					Github access token
 					<input
+						@input="${this.handleChange}"
 						type="text"
 						id="access-token"
 						name="access-token"
@@ -21,6 +45,7 @@ class GithubLogin extends TenjinElement {
 				<label for="git-user">
 					Git user
 					<input
+						@input="${this.handleChange}"
 						type="text"
 						id="git-user"
 						name="git-user"
@@ -30,7 +55,13 @@ class GithubLogin extends TenjinElement {
 				</label>
 			</div>
 
-			<button type="submit">Submit</button>
+			<button
+				id="login-button"
+				.disabled="${!this.canSubmit}"
+				@click="${this.handleClick}"
+			>
+				Submit
+			</button>
 		</form>`;
 	}
 }
