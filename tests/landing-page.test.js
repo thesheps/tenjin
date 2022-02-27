@@ -10,9 +10,10 @@ describe("Landing Page", () => {
 	});
 
 	it("Has the expected splash message", async () => {
-		await expect(page).toMatch("Welcome to Tenjin!", {
-			traverseShadowRoots: true,
-		});
+		const navbar = await page.$("pierce/#splash");
+		const text = await page.evaluate((el) => el.textContent, navbar);
+
+		expect(text).toMatch("Welcome to Tenjin!");
 	});
 
 	it("Has the navbar component", async () => {
