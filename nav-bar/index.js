@@ -1,8 +1,8 @@
-import { html, css, LitElement } from "https://unpkg.com/lit?module";
-import styles from "../styles.js";
+import { html } from "https://unpkg.com/lit?module";
+import TenjinElement from "../tenjin-element.js";
 
-class NavBar extends LitElement {
-	static styles = styles;
+class NavBar extends TenjinElement {
+	static styles = super.styles;
 
 	render() {
 		return html`<nav id="nav-bar" class="container-fluid">
