@@ -18,8 +18,13 @@ describe("Landing Page", () => {
 
 	it("Has the navbar component", async () => {
 		const navbar = await page.$("pierce/#nav-bar");
-		const text = await page.evaluate((el) => el.textContent, navbar);
 
-		expect(text).toMatch("Tenjin.");
+		expect(navbar).toBeTruthy();
+	});
+
+	it("Has the github login component", async () => {
+		const githubLogin = await page.$("pierce/#github-login");
+
+		expect(githubLogin).toBeTruthy();
 	});
 });
