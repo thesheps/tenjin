@@ -1,4 +1,9 @@
-import { html } from "https://unpkg.com/lit?module";
-import Splash from "./splash.js";
+import { html, LitElement } from "https://unpkg.com/lit?module";
 
-export default () => html`<div class="container">Welcome to Tenjin!</div>`;
+class LandingPage extends LitElement {
+	render() {
+		return html`<div id="splash" class="container">Welcome to Tenjin!</div>`;
+	}
+}
+
+customElements.define("landing-page", LandingPage);

@@ -10,11 +10,21 @@
 	</head>
 
 	<body>
+		<nav-bar></nav-bar>
+		<div class="container" id="outlet"></div>
+
 		<script type="module">
 			import { html, render } from "https://unpkg.com/lit?module";
-			import app from "./app.js";
+			import { Router } from "https://unpkg.com/@vaadin/router";
+			import "./components.js";
 
-			render(app(), document.body);
+			const outlet = document.getElementById("outlet");
+			const router = new Router(outlet);
+			router.setRoutes([
+				{ path: "/", component: "landing-page" },
+				{ path: "/users", component: "x-user-list" },
+				{ path: "/users/:user", component: "x-user-profile" },
+			]);
 		</script>
 	</body>
 </html>
