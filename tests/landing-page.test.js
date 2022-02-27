@@ -14,4 +14,11 @@ describe("Landing Page", () => {
 			traverseShadowRoots: true,
 		});
 	});
+
+	it("Has the navbar component", async () => {
+		const navbar = await page.$("pierce/#nav-bar");
+		const text = await page.evaluate((el) => el.textContent, navbar);
+
+		expect(text).toMatch("Tenjin.");
+	});
 });
