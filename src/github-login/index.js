@@ -6,16 +6,12 @@ class GithubLogin extends TenjinElement {
 
 	static get properties() {
 		return {
-			canSubmit: { type: Boolean },
+			canSubmit: { type: Boolean, state: true },
 		};
 	}
 
-	updated() {
-		console.log(this.canSubmit);
-	}
-
 	isTextEntered(id) {
-		return this.shadowRoot.getElementById(id).value.length > 0;
+		return this.renderRoot.querySelector(`#${id}`).value.length > 0;
 	}
 
 	handleChange() {
