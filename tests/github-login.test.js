@@ -10,8 +10,21 @@ describe("Github Login", () => {
 
 		await page.type("pierce/input[name=git-user]", "test");
 		await page.type("pierce/input[name=access-token]", "test");
-		isDisabled = await page.evaluate((el) => el.disabled, loginButton);
 
+		isDisabled = await page.evaluate((el) => el.disabled, loginButton);
 		expect(isDisabled).toBeFalsy();
+	});
+
+	it("Triggers the loading spinner when you smash that login button", async () => {
+		const loginButton = await page.$("pierce/#login-button");
+		var isLoading = await page.evaluate((el) => el.ariaBusy, loginButton);
+		expect(isLoading).toBeFalsy();
+
+		await page.type("pierce/input[name=git-user]", "test");
+		await page.type("pierce/input[name=access-token]", "test");
+		await loginButton.click();
+
+		isLoading = await page.evaluate((el) => el.ariaBusy, loginButton);
+		expect(isLoading).toBeTruthy();
 	});
 });

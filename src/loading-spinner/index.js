@@ -5,7 +5,7 @@ class LoadingSpinner extends TenjinElement {
 	static styles = super.styles;
 
 	render() {
-		return html`<div></div>`;
+		return html`<div aria-busy="true"></div>`;
 	}
 }
 

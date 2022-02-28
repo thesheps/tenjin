@@ -7,6 +7,7 @@ class GithubLogin extends TenjinElement {
 	static get properties() {
 		return {
 			canSubmit: { type: Boolean, state: true },
+			isLoading: { type: Boolean, state: true },
 		};
 	}
 
@@ -21,6 +22,7 @@ class GithubLogin extends TenjinElement {
 
 	handleClick(e) {
 		e.preventDefault();
+		this.isLoading = true;
 	}
 
 	render() {
@@ -53,10 +55,11 @@ class GithubLogin extends TenjinElement {
 
 			<button
 				id="login-button"
-				.disabled="${!this.canSubmit}"
+				aria-busy="${this.isLoading}"
+				.disabled="${!this.canSubmit || this.isLoading}"
 				@click="${this.handleClick}"
 			>
-				Submit
+				${this.isLoading ? "Logging in..." : "Log in"}
 			</button>
 		</form>`;
 	}
