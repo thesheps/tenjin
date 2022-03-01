@@ -1,13 +1,6 @@
-import { css, LitElement } from "https://unpkg.com/lit?module";
+import { LitElement, css } from "https://unpkg.com/lit?module";
 import styles from "./styles.js";
 
 export default class StyledElement extends LitElement {
-	static styles = [
-		styles,
-		css`
-			:root {
-				color: "--primary: #5e35b1;";
-			}
-		`,
-	];
+	static styles = [styles];
 }
