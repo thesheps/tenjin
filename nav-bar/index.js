@@ -1,7 +1,7 @@
 import { html } from "https://unpkg.com/lit?module";
-import TenjinElement from "../tenjin-element.js";
+import StyledElement from "../styles/styled-element.js";
 
-class NavBar extends TenjinElement {
+class NavBar extends StyledElement {
 	static styles = super.styles;
 
 	render() {

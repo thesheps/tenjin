@@ -3,25 +3,31 @@
 <html>
 	<head>
 		<title>Tenjin</title>
-		<link
-			rel="stylesheet"
-			href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
-		/>
+		<link rel="icon" type="image/png" sizes="16x16" href="/styles/fav-16.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/styles/fav-32.png" />
+		<link rel="icon" type="image/png" sizes="96x96" href="/styles/fav-96.png" />
+		<link rel="stylesheet" href="./styles/pico-bootstrap-grid.min.css" />
 	</head>
 
 	<body>
 		<nav-bar></nav-bar>
-		<div class="container" id="outlet"></div>
+
+		<div class="row">
+			<div class="col-md-4">
+				<repo-lister></repo-lister>
+			</div>
+
+			<div class="col">
+				<div id="outlet"></div>
+			</div>
+		</div>
 
 		<script type="module">
 			import { Router } from "https://unpkg.com/@vaadin/router";
 			import "./components.js";
 
-			const outlet = document.getElementById("outlet");
-			const router = new Router(outlet);
+			const router = new Router(document.getElementById("outlet"));
 			router.setRoutes([{ path: "/", component: "landing-page" }]);
 		</script>
-
-		<style></style>
 	</body>
 </html>

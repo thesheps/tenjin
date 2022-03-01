@@ -1,7 +1,7 @@
 import { html } from "https://unpkg.com/lit?module";
-import TenjinElement from "../tenjin-element.js";
+import StyledElement from "../styles/styled-element.js";
 
-class LandingPage extends TenjinElement {
+class LandingPage extends StyledElement {
 	static styles = super.styles;
 
 	render() {
@@ -10,8 +10,8 @@ class LandingPage extends TenjinElement {
 			<h2>Why, though?</h2>
 			<p>
 				Tenjin is a project that aims to try and <i>make sense</i> of your git
-				universe. It'll scrape your repositories for supported docs*, and
-				present them in a single, beautiful place 🚀
+				universe. It'll scrape your repositories for supported docs, and present
+				them in a single, beautiful place 🚀
 			</p>
 
 			<h2>Quickstart?</h2>
@@ -21,7 +21,7 @@ class LandingPage extends TenjinElement {
 				your account/organisation for any matching docs and work our magic! 🪄
 			</p>
 
-			<github-login></github-login>
+			<github-login canSubmit="true"></github-login>
 		</div>`;
 	}
 }
