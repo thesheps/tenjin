@@ -27,14 +27,22 @@ class RepoLister extends StyledElement {
 	}
 
 	render() {
-		const repos = this.repos.map((r) => html`<div>${r.name}</div>`);
+		const repos = this.repos.map(
+			(r) => html`<li><a href="/repo/${r.name}">${r.name}</a></li>`
+		);
 
 		return html`<div id="repo-lister">
 			<h3>
 				Your repos
 				<hr />
 			</h3>
-			${repos}
+			<aside>
+				<nav>
+					<ul>
+						${repos}
+					</ul>
+				</nav>
+			</aside>
 		</div>`;
 	}
 }

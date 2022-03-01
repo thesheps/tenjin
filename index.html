@@ -12,13 +12,17 @@
 	<body>
 		<nav-bar></nav-bar>
 
-		<div class="row">
-			<div class="col-md-4">
-				<repo-lister></repo-lister>
-			</div>
+		<br />
 
-			<div class="col">
-				<div id="outlet"></div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-3 margin-large">
+					<repo-lister></repo-lister>
+				</div>
+
+				<div class="col">
+					<div id="outlet"></div>
+				</div>
 			</div>
 		</div>
 
@@ -27,7 +31,10 @@
 			import "./components.js";
 
 			const router = new Router(document.getElementById("outlet"));
-			router.setRoutes([{ path: "/", component: "landing-page" }]);
+			router.setRoutes([
+				{ path: "/", component: "landing-page" },
+				{ path: "/repo/:repoName", component: "repo-viewer" },
+			]);
 		</script>
 	</body>
 </html>

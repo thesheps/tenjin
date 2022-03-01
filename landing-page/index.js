@@ -6,20 +6,29 @@ class LandingPage extends StyledElement {
 
 	render() {
 		return html`<div id="splash" class="container">
-			<h1>Welcome to Tenjin! 🥷</h1>
-			<h2>Why, though?</h2>
-			<p>
-				Tenjin is a project that aims to try and <i>make sense</i> of your git
-				universe. It'll scrape your repositories for supported docs, and present
-				them in a single, beautiful place 🚀
-			</p>
+			<hgroup>
+				<h1>Welcome to Tenjin! 🥷</h1>
+				<p>A git-flavoured documentation aggregator <i>(#documentegator)</i></p>
+			</hgroup>
 
-			<h2>Quickstart?</h2>
-			<p>
-				First things first - You're going to need to go and grab yourself a
-				Github Personal Access Token. With this we'll be able to go and scrape
-				your account/organisation for any matching docs and work our magic! 🪄
-			</p>
+			<hgroup>
+				<h2>Yeah but - Why, though?</h2>
+				<p>
+					Tenjin is a project that aims to try and <i>make sense</i> of your git
+					universe. It'll scrape your repositories for supported docs, and
+					present them in a single, beautiful place 🚀
+				</p>
+			</hgroup>
+
+			<hgroup>
+				<h2>Quickstart?</h2>
+				<p>
+					First things first - Throw your Github account/organisation name into
+					this box. With this we'll be able to go and scrape all of your
+					account/organisation for any publically-available matching docs and
+					work our magic! 🪄
+				</p>
+			</hgroup>
 
 			<github-login canSubmit="true"></github-login>
 		</div>`;
