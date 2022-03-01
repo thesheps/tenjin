@@ -1,8 +1,16 @@
-import { html } from "https://unpkg.com/lit?module";
+import { css, html } from "https://unpkg.com/lit?module";
 import StyledElement from "../styles/styled-element.js";
 
 class RepoLister extends StyledElement {
-	static styles = super.styles;
+	static styles = [
+		super.styles,
+		css`
+			#repo-lister {
+				overflow-y: scroll;
+				height: calc(100vh - 30vh);
+			}
+		`,
+	];
 
 	static get properties() {
 		return {
@@ -31,12 +39,12 @@ class RepoLister extends StyledElement {
 			(r) => html`<li><a href="/repo/${r.name}">${r.name}</a></li>`
 		);
 
-		return html`<div id="repo-lister">
+		return html`<div>
 			<h3>
 				Your repos
 				<hr />
 			</h3>
-			<aside>
+			<aside id="repo-lister">
 				<nav>
 					<ul>
 						${repos}

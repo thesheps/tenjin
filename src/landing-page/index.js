@@ -1,8 +1,15 @@
-import { html } from "https://unpkg.com/lit?module";
+import { css, html } from "https://unpkg.com/lit?module";
 import StyledElement from "../styles/styled-element.js";
 
 class LandingPage extends StyledElement {
-	static styles = super.styles;
+	static styles = [
+		super.styles,
+		css`
+			#splash {
+				height: 100vh;
+			}
+		`,
+	];
 
 	render() {
 		return html`<div id="splash" class="container">
