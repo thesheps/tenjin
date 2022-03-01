@@ -1,5 +1,7 @@
 describe("Github Login", () => {
-	beforeAll(async () => {
+	const username = "testUsername";
+
+	beforeEach(async () => {
 		await page.goto(`http://localhost:${process.env.PORT}`);
 	});
 
@@ -8,8 +10,7 @@ describe("Github Login", () => {
 		var isDisabled = await page.evaluate((el) => el.disabled, loginButton);
 		expect(isDisabled).toBeTruthy();
 
-		await page.type("pierce/input[name=git-user]", "test");
-		await page.type("pierce/input[name=access-token]", "test");
+		await page.type("pierce/input[name=username]", username);
 
 		isDisabled = await page.evaluate((el) => el.disabled, loginButton);
 		expect(isDisabled).toBeFalsy();
@@ -20,11 +21,29 @@ describe("Github Login", () => {
 		var isLoading = await page.evaluate((el) => el.ariaBusy, loginButton);
 		expect(isLoading).toBeFalsy();
 
-		await page.type("pierce/input[name=git-user]", "test");
-		await page.type("pierce/input[name=access-token]", "test");
+		await page.type("pierce/input[name=username]", username);
 		await loginButton.click();
 
 		isLoading = await page.evaluate((el) => el.ariaBusy, loginButton);
 		expect(isLoading).toBeTruthy();
+	});
+
+	it("Loads the expected repos for the given user", async () => {
+		page.setRequestInterception(true);
+		page.on("request", (request) => {
+			if (request.url() === `https://api.github.com/users/${username}/repos`) {
+				request.response([{ name: "my-lovely-repo" }]);
+			} else {
+				request.continue();
+			}
+		});
+
+		await page.type("pierce/input[name=username]", username);
+		await page.click("pierce/#login-button");
+
+		const repoLister = await page.$("pierce/#repo-lister");
+		const repos = await page.evaluate((el) => el.textContent, repoLister);
+
+		expect(repos).toMatch("Your repos");
 	});
 });

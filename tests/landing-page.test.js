@@ -5,7 +5,6 @@ describe("Landing Page", () => {
 
 	it("Has the expected title", async () => {
 		const title = await page.title();
-
 		expect(title).toBe("Tenjin");
 	});
 
@@ -18,13 +17,16 @@ describe("Landing Page", () => {
 
 	it("Has the navbar component", async () => {
 		const navbar = await page.$("pierce/#nav-bar");
-
 		expect(navbar).toBeTruthy();
 	});
 
 	it("Has the github login component", async () => {
 		const githubLogin = await page.$("pierce/#github-login");
-
 		expect(githubLogin).toBeTruthy();
+	});
+
+	it("Has the repo lister component", async () => {
+		const repoLister = await page.$("pierce/#repo-lister");
+		expect(repoLister).toBeTruthy();
 	});
 });
