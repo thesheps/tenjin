@@ -25,6 +25,9 @@
 		"lit-html": "^2.2.0"
 	},
 	"devDependencies": {
+		"@babel/core": "^7.17.5",
+		"@babel/preset-env": "^7.16.11",
+		"babel-jest": "^27.5.1",
 		"env-cmd": "^10.1.0",
 		"http-server": "^14.1.0",
 		"jest": "^27.5.1",
