@@ -1,7 +1,8 @@
 import { html } from "https://unpkg.com/lit?module";
-import TenjinElement from "../tenjin-element.js";
+import StyledElement from "../styles/styled-element.js";
+import getRepos from "./get-repos.js";
 
-class GithubLogin extends TenjinElement {
+class GithubLogin extends StyledElement {
 	static styles = super.styles;
 
 	static get properties() {
@@ -11,43 +12,42 @@ class GithubLogin extends TenjinElement {
 		};
 	}
 
-	isTextEntered(id) {
-		return this.renderRoot.querySelector(`#${id}`).value.length > 0;
+	username() {
+		return this.renderRoot.querySelector("#username");
 	}
 
 	handleChange() {
-		this.canSubmit =
-			this.isTextEntered("access-token") && this.isTextEntered("git-user");
+		this.canSubmit = this.username().value.length > 0;
 	}
 
-	handleClick(e) {
+	async handleClick(e) {
 		e.preventDefault();
+
 		this.isLoading = true;
+		const repos = await getRepos(this.username().value);
+
+		this.dispatchEvent(
+			new CustomEvent("onReposDownloaded", {
+				bubbles: true,
+				composed: true,
+				detail: repos,
+			})
+		);
+
+		this.isLoading = false;
 	}
 
 	render() {
 		return html`<form id="github-login">
 			<div class="grid">
-				<label for="access-token">
-					Github access token
-					<input
-						@input="${this.handleChange}"
-						type="text"
-						id="access-token"
-						name="access-token"
-						placeholder="ghp_ndAABduwawuUWDHKWUdW8ADDWG76dikAAD9I"
-						required
-					/>
-				</label>
-
-				<label for="git-user">
+				<label for="username">
 					Git user
 					<input
 						@input="${this.handleChange}"
 						type="text"
-						id="git-user"
-						name="git-user"
-						placeholder="thesheps"
+						id="username"
+						name="username"
+						placeholder="username"
 						required
 					/>
 				</label>

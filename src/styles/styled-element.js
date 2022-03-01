@@ -1,7 +1,7 @@
 import { css, LitElement } from "https://unpkg.com/lit?module";
-import styles from "../styles.js";
+import styles from "./styles.js";
 
-export default class TenjinElement extends LitElement {
+export default class StyledElement extends LitElement {
 	static styles = [
 		styles,
 		css`
