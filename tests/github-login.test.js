@@ -29,10 +29,16 @@ describe("Github Login", () => {
 	});
 
 	it("Loads the expected repos for the given user", async () => {
+		const expectedRepo = { name: "my-lovely-repo" };
+		const repoUrl = `https://api.github.com/users/${username}/repos`;
+
 		page.setRequestInterception(true);
 		page.on("request", (request) => {
-			if (request.url() === `https://api.github.com/users/${username}/repos`) {
-				request.response([{ name: "my-lovely-repo" }]);
+			if (request.url() == repoUrl) {
+				request.respond({
+					headers: { "Access-Control-Allow-Origin": "*" },
+					body: JSON.stringify([expectedRepo]),
+				});
 			} else {
 				request.continue();
 			}
@@ -42,8 +48,8 @@ describe("Github Login", () => {
 		await page.click("pierce/#login-button");
 
 		const repoLister = await page.$("pierce/#repo-lister");
-		const repos = await page.evaluate((el) => el.textContent, repoLister);
+		const repoListing = await page.evaluate((el) => el.textContent, repoLister);
 
-		expect(repos).toMatch("Your repos");
+		expect(repoListing).toMatch(expectedRepo.name);
 	});
 });
