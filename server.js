@@ -1,1 +1,6 @@
-require("http-server").createServer({ root: "src" }).listen(process.env.PORT);
+require("live-server").start({
+	file: "index.html",
+	open: false,
+	port: process.env.PORT,
+	root: "src",
+});
