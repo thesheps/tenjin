@@ -33,7 +33,7 @@
 			const router = new Router(document.getElementById("outlet"));
 			router.setRoutes([
 				{ path: "/", component: "landing-page" },
-				{ path: "/repo/:repoName", component: "repo-viewer" },
+				{ path: "/:username/:repo", component: "repo-viewer" },
 			]);
 		</script>
 	</body>

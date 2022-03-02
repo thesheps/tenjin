@@ -1,11 +1,20 @@
-import { html } from "https://unpkg.com/lit?module";
+import { css, html } from "https://unpkg.com/lit?module";
 import StyledElement from "../styles/styled-element.js";
 
 class RepoLister extends StyledElement {
-	static styles = super.styles;
+	static styles = [
+		super.styles,
+		css`
+			#repo-lister {
+				overflow-y: scroll;
+				height: calc(100vh - 30vh);
+			}
+		`,
+	];
 
 	static get properties() {
 		return {
+			username: { type: String, state: true },
 			repos: { type: Array, state: true },
 		};
 	}
@@ -16,7 +25,7 @@ class RepoLister extends StyledElement {
 	}
 
 	handleDownload(downloadEvent) {
-		this.repos = downloadEvent.detail;
+		({ username: this.username, repos: this.repos } = downloadEvent.detail);
 	}
 
 	connectedCallback() {
@@ -28,15 +37,18 @@ class RepoLister extends StyledElement {
 
 	render() {
 		const repos = this.repos.map(
-			(r) => html`<li><a href="/repo/${r.name}">${r.name}</a></li>`
+			(r) =>
+				html`<li>
+					<a class="repo" href="/${this.username}/${r.name}">${r.name}</a>
+				</li>`
 		);
 
-		return html`<div id="repo-lister">
+		return html`<div>
 			<h3>
 				Your repos
 				<hr />
 			</h3>
-			<aside>
+			<aside id="repo-lister">
 				<nav>
 					<ul>
 						${repos}
