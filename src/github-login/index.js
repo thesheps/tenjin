@@ -24,13 +24,14 @@ class GithubLogin extends StyledElement {
 		e.preventDefault();
 
 		this.isLoading = true;
-		const repos = await getRepos(this.username().value);
+		const username = this.username().value;
+		const repos = await getRepos(username);
 
 		this.dispatchEvent(
 			new CustomEvent("onReposDownloaded", {
 				bubbles: true,
 				composed: true,
-				detail: repos,
+				detail: { username, repos },
 			})
 		);
 
