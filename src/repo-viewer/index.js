@@ -15,7 +15,7 @@ class RepoViewer extends StyledElement {
 	}
 
 	render() {
-		return html`<div>
+		return html`<div id="repo-viewer">
 			<h3>
 				${this.name}
 				<hr />
