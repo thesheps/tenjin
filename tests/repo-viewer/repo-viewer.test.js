@@ -23,7 +23,6 @@ describe("Repo Viewer", () => {
 	});
 
 	it("Loads the expected branches for the given repo", async () => {
-		await page.screenshot({ path: "screenshot.png" });
 		const repoViewer = await page.$("pierce/#repo-viewer");
 		const text = await page.evaluate((el) => el.innerText, repoViewer);
 
