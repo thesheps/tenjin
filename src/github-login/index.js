@@ -1,6 +1,5 @@
 import { html } from "https://unpkg.com/lit?module";
 import StyledElement from "../styles/styled-element.js";
-import getRepos from "./get-repos.js";
 
 class GithubLogin extends StyledElement {
 	static styles = super.styles;
@@ -25,13 +24,12 @@ class GithubLogin extends StyledElement {
 
 		this.isLoading = true;
 		const username = this.username().value;
-		const repos = await getRepos(username);
 
 		this.dispatchEvent(
-			new CustomEvent("onReposDownloaded", {
+			new CustomEvent("onLoggedIn", {
 				bubbles: true,
 				composed: true,
-				detail: { username, repos },
+				detail: username,
 			})
 		);
 

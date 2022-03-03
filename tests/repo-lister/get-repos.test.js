@@ -1,4 +1,4 @@
-import getRepos from "../../src/github-login/get-repos";
+import getRepos from "../../src/repo-lister/get-repos";
 
 const json = jest.fn();
 global.fetch = jest.fn(() => Promise.resolve({ json }));

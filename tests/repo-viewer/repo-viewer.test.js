@@ -4,7 +4,9 @@ describe("Repo Viewer", () => {
 	const repoUrl = `https://api.github.com/users/${username}/repos`;
 
 	beforeAll(async () => {
-		await page.goto(`http://localhost:${process.env.PORT}`);
+		await page.goto(
+			`http://localhost:${process.env.PORT}/${username}/${expectedRepo.name}`
+		);
 
 		page.setRequestInterception(true);
 		page.on("request", (request) => {
@@ -17,15 +19,5 @@ describe("Repo Viewer", () => {
 				request.continue();
 			}
 		});
-
-		await page.type("pierce/input[name=username]", username);
-		await page.click("pierce/#login-button");
-	});
-
-	it("Loads the branches relating to the repo", async () => {
-		const repoLister = await page.$("pierce/#repo-lister");
-		const repoListing = await repoLister.$(".repo");
-
-		await repoListing.click();
 	});
 });
