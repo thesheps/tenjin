@@ -1,7 +1,7 @@
 describe("Repo Lister", () => {
-	const username = "testUsername";
+	const expectedUsername = "testUsername";
 	const expectedRepo = { name: "my-lovely-repo" };
-	const repoUrl = `https://api.github.com/users/${username}/repos`;
+	const repoUrl = `https://api.github.com/users/${expectedUsername}/repos`;
 
 	beforeAll(async () => {
 		await page.goto(`http://localhost:${process.env.PORT}`);
@@ -18,7 +18,7 @@ describe("Repo Lister", () => {
 			}
 		});
 
-		await page.type("pierce/input[name=username]", username);
+		await page.type("pierce/input[name=username]", expectedUsername);
 		await page.click("pierce/#login-button");
 	});
 
