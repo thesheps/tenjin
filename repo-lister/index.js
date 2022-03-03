@@ -1,5 +1,6 @@
 import { css, html } from "https://unpkg.com/lit?module";
 import StyledElement from "../styles/styled-element.js";
+import getRepos from "./get-repos.js";
 
 class RepoLister extends StyledElement {
 	static styles = [
@@ -24,14 +25,16 @@ class RepoLister extends StyledElement {
 		this.repos = [];
 	}
 
-	handleDownload(downloadEvent) {
-		({ username: this.username, repos: this.repos } = downloadEvent.detail);
+	async handleLogin(loginEvent) {
+		this.username = loginEvent.detail;
+		this.repos = await getRepos(this.username);
 	}
 
 	connectedCallback() {
 		super.connectedCallback();
-		window.addEventListener("onReposDownloaded", (event) =>
-			this.handleDownload(event)
+		window.addEventListener(
+			"onLoggedIn",
+			async (event) => await this.handleLogin(event)
 		);
 	}
 
