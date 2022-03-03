@@ -1,23 +1,32 @@
 describe("Repo Viewer", () => {
-	const username = "testUsername";
+	const expectedUsername = "testUsername";
 	const expectedRepo = { name: "my-lovely-repo" };
-	const repoUrl = `https://api.github.com/users/${username}/repos`;
+	const expectedBranch = { name: "my-lovely-branch" };
+	const branchesUrl = `https://api.github.com/repos/${expectedUsername}/${expectedRepo.name}/branches`;
 
 	beforeAll(async () => {
-		await page.goto(
-			`http://localhost:${process.env.PORT}/${username}/${expectedRepo.name}`
-		);
-
 		page.setRequestInterception(true);
 		page.on("request", (request) => {
-			if (request.url() == repoUrl) {
+			if (request.url() == branchesUrl) {
 				request.respond({
 					headers: { "Access-Control-Allow-Origin": "*" },
-					body: JSON.stringify([expectedRepo]),
+					body: JSON.stringify([expectedBranch]),
 				});
 			} else {
 				request.continue();
 			}
 		});
+
+		await page.goto(
+			`http://localhost:${process.env.PORT}/${expectedUsername}/${expectedRepo.name}`
+		);
+	});
+
+	it("Loads the expected branches for the given repo", async () => {
+		await page.screenshot({ path: "screenshot.png" });
+		const repoViewer = await page.$("pierce/#repo-viewer");
+		const text = await page.evaluate((el) => el.innerText, repoViewer);
+
+		expect(text).toMatch(expectedBranch.name);
 	});
 });

@@ -39,8 +39,8 @@ class RepoViewer extends StyledElement {
 				<hr />
 			</h3>
 
-			<label for="branch">Branch</label>
-			<select id="branch" required>
+			<label for="branch">Branches</label>
+			<select id="branches" required>
 				<option value="" selected>Select a Branch...</option>
 				${branches}
 			</select>
