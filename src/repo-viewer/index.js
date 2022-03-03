@@ -7,6 +7,7 @@ class RepoViewer extends StyledElement {
 
 	static get properties() {
 		return {
+			username: { type: String, state: true },
 			repo: { type: String, state: true },
 			branches: { type: Array, state: true },
 			files: { type: Array, state: true },
@@ -14,13 +15,20 @@ class RepoViewer extends StyledElement {
 	}
 
 	async onBeforeEnter(location) {
-		const username = location.params["username"];
-
+		this.username = location.params["username"];
 		this.repo = location.params["repo"];
-		this.branches = await getBranches(username, this.repo);
+		this.branches = await getBranches(this.username, this.repo);
 	}
 
 	render() {
+		this.dispatchEvent(
+			new CustomEvent("onLoggedIn", {
+				bubbles: true,
+				composed: true,
+				detail: this.username,
+			})
+		);
+
 		const branches = this.branches.map(
 			(b) => html`<option value="${b.name}">${b.name}</option>`
 		);
