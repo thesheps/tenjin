@@ -1,4 +1,4 @@
-const { baseUrl } = require("../testData");
+const { baseUrl, baseUserUrl, expectedUsername } = require("../testData");
 
 describe("Landing Page", () => {
 	beforeAll(async () => {
@@ -30,5 +30,14 @@ describe("Landing Page", () => {
 	it("Has the repo lister component", async () => {
 		const repoLister = await page.$("pierce/#repo-lister");
 		expect(repoLister).toBeTruthy();
+	});
+
+	it("Parses a username from the subdomain if presented", async () => {
+		await page.goto(baseUserUrl);
+
+		const usernameInput = await page.$("pierce/input[name=username]");
+		const username = await page.evaluate((el) => el.value, usernameInput);
+
+		expect(username).toBe(expectedUsername);
 	});
 });

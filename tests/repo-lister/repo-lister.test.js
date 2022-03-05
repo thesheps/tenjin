@@ -7,7 +7,7 @@ describe("Repo Lister", () => {
 
 		await page.goto(baseUrl);
 		await page.type("pierce/input[name=username]", expectedUsername);
-		await page.click("pierce/#login-button");
+		await page.click("pierce/#load-button");
 	});
 
 	it("Loads the expected repos for the given user", async () => {
