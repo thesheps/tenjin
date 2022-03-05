@@ -1,8 +1,8 @@
-describe("Github Login", () => {
-	const username = "testUsername";
+import { baseUrl, expectedUsername } from "../testData";
 
+describe("Github Login", () => {
 	beforeEach(async () => {
-		await page.goto(`http://localhost:${process.env.PORT}`);
+		await page.goto(baseUrl);
 	});
 
 	it("Requires both fields to be populated", async () => {
@@ -10,7 +10,7 @@ describe("Github Login", () => {
 		var isDisabled = await page.evaluate((el) => el.disabled, loginButton);
 		expect(isDisabled).toBeTruthy();
 
-		await page.type("pierce/input[name=username]", username);
+		await page.type("pierce/input[name=username]", expectedUsername);
 
 		isDisabled = await page.evaluate((el) => el.disabled, loginButton);
 		expect(isDisabled).toBeFalsy();
@@ -21,7 +21,7 @@ describe("Github Login", () => {
 		var isLoading = await page.evaluate((el) => el.ariaBusy, loginButton);
 		expect(isLoading).toBeFalsy();
 
-		await page.type("pierce/input[name=username]", username);
+		await page.type("pierce/input[name=username]", expectedUsername);
 		await loginButton.click();
 
 		isLoading = await page.evaluate((el) => el.ariaBusy, loginButton);

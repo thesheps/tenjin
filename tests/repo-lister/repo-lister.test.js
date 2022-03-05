@@ -1,23 +1,11 @@
+import configureInterception from "../configureInterception";
+import { baseUrl, expectedRepo, expectedUsername } from "../testData";
+
 describe("Repo Lister", () => {
-	const expectedUsername = "testUsername";
-	const expectedRepo = { name: "my-lovely-repo" };
-	const repoUrl = `https://api.github.com/users/${expectedUsername}/repos`;
-
 	beforeAll(async () => {
-		await page.goto(`http://localhost:${process.env.PORT}`);
+		configureInterception(page);
 
-		page.setRequestInterception(true);
-		page.on("request", (request) => {
-			if (request.url() == repoUrl) {
-				request.respond({
-					headers: { "Access-Control-Allow-Origin": "*" },
-					body: JSON.stringify([expectedRepo]),
-				});
-			} else {
-				request.continue();
-			}
-		});
-
+		await page.goto(baseUrl);
 		await page.type("pierce/input[name=username]", expectedUsername);
 		await page.click("pierce/#login-button");
 	});

@@ -1,6 +1,8 @@
+const { baseUrl } = require("../testData");
+
 describe("Landing Page", () => {
 	beforeAll(async () => {
-		await page.goto(`http://localhost:${process.env.PORT}`);
+		await page.goto(baseUrl);
 	});
 
 	it("Has the expected title", async () => {
