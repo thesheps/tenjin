@@ -11,6 +11,20 @@ class LandingPage extends StyledElement {
 		`,
 	];
 
+	static get properties() {
+		return {
+			username: { type: String, state: true },
+		};
+	}
+
+	async onBeforeEnter(location) {
+		const urlParts = window.location.host.split(".");
+		const subdomain = window.location.host.split(".")[0];
+
+		this.username =
+			subdomain === "www" || urlParts.length === 1 ? "" : subdomain;
+	}
+
 	render() {
 		return html`<div id="splash" class="container">
 			<hgroup>
@@ -37,7 +51,7 @@ class LandingPage extends StyledElement {
 				</p>
 			</hgroup>
 
-			<github-login canSubmit="true"></github-login>
+			<github-login username="${this.username}" canSubmit="true"></github-login>
 		</div>`;
 	}
 }

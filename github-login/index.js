@@ -8,22 +8,28 @@ class GithubLogin extends StyledElement {
 		return {
 			canSubmit: { type: Boolean, state: true },
 			isLoading: { type: Boolean, state: true },
+			username: { type: String, state: false },
 		};
 	}
 
-	username() {
+	connectedCallback() {
+		super.connectedCallback();
+		this.canSubmit = this.username;
+	}
+
+	getUsername() {
 		return this.renderRoot.querySelector("#username");
 	}
 
 	handleChange() {
-		this.canSubmit = this.username().value.length > 0;
+		this.canSubmit = this.getUsername().value.length > 0;
 	}
 
 	async handleClick(e) {
 		e.preventDefault();
 
 		this.isLoading = true;
-		const username = this.username().value;
+		const username = this.getUsername().value;
 
 		this.dispatchEvent(
 			new CustomEvent("onLoggedIn", {
@@ -43,6 +49,7 @@ class GithubLogin extends StyledElement {
 					Git user
 					<input
 						@input="${this.handleChange}"
+						value="${this.username}"
 						type="text"
 						id="username"
 						name="username"
@@ -53,12 +60,12 @@ class GithubLogin extends StyledElement {
 			</div>
 
 			<button
-				id="login-button"
+				id="load-button"
 				aria-busy="${this.isLoading}"
 				.disabled="${!this.canSubmit || this.isLoading}"
 				@click="${this.handleClick}"
 			>
-				${this.isLoading ? "Logging in..." : "Log in"}
+				${this.isLoading ? "Loading..." : "Load"}
 			</button>
 		</form>`;
 	}
