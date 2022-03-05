@@ -1,4 +1,4 @@
-import { expectedBranch, expectedUsername, expectedRepo } from "./testData";
+import { expectedUsername, expectedRepo, expectedBranches } from "./testData";
 
 const repoUrl = `https://api.github.com/users/${expectedUsername}/repos`;
 const branchesUrl = `https://api.github.com/repos/${expectedUsername}/${expectedRepo.name}/branches`;
@@ -18,7 +18,7 @@ export default (page) => {
 			case branchesUrl:
 				request.respond({
 					headers: { "Access-Control-Allow-Origin": "*" },
-					body: JSON.stringify([expectedBranch]),
+					body: JSON.stringify(expectedBranches),
 				});
 				break;
 			default:

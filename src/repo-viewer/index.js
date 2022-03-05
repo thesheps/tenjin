@@ -30,7 +30,13 @@ class RepoViewer extends StyledElement {
 		);
 
 		const branches = this.branches.map(
-			(b) => html`<option value="${b.name}">${b.name}</option>`
+			(b) =>
+				html`<option
+					selected="${b.name === "main" || b.name === "master"}"
+					value="${b.name}"
+				>
+					${b.name}
+				</option>`
 		);
 
 		return html`<div id="repo-viewer">
@@ -41,7 +47,7 @@ class RepoViewer extends StyledElement {
 
 			<label for="branch">Branches</label>
 			<select id="branches" required>
-				<option value="" selected>Select a Branch...</option>
+				<option value="">Select a Branch...</option>
 				${branches}
 			</select>
 		</div>`;

@@ -1,4 +1,4 @@
-import { expectedBranch, repoUrl } from "../testData";
+import { expectedBranch, expectedBranches, repoUrl } from "../testData";
 import configureInterception from "../configureInterception";
 
 describe("Repo Viewer", () => {
@@ -9,8 +9,19 @@ describe("Repo Viewer", () => {
 
 	it("Loads the expected branches for the given repo", async () => {
 		const repoViewer = await page.$("pierce/#repo-viewer");
-		const text = await page.evaluate((el) => el.innerText, repoViewer);
+		const branches = await repoViewer.$$eval("select > option", (branches) =>
+			branches.map((b) => b.text)
+		);
 
-		expect(text).toMatch(expectedBranch.name);
+		expect(branches).toEqual(
+			expect.arrayContaining(expectedBranches.map((b) => b.name))
+		);
+	});
+
+	it("Preselects the master or main branch", async () => {
+		const repoViewer = await page.$("pierce/#repo-viewer");
+		const selected = await repoViewer.$eval("#branches", (el) => el.value);
+
+		expect(selected).toMatch(expectedBranch.name);
 	});
 });
