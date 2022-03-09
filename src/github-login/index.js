@@ -1,5 +1,5 @@
 import { html } from "https://unpkg.com/lit?module";
-import StyledElement from "../styles/styled-element.js";
+import StyledElement from "../styled-element.js";
 
 class GithubLogin extends StyledElement {
 	static styles = super.styles;

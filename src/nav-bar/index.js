@@ -1,5 +1,5 @@
 import { html, css } from "https://unpkg.com/lit?module";
-import StyledElement from "../styles/styled-element.js";
+import StyledElement from "../styled-element.js";
 
 class NavBar extends StyledElement {
 	static styles = [

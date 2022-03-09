@@ -1,8 +1,8 @@
 import { html } from "https://unpkg.com/lit?module";
-import StyledElement from "../styles/styled-element.js";
+import RoutedElement from "../routed-element.js";
 import getBranches from "./get-branches.js";
 
-class RepoViewer extends StyledElement {
+class RepoViewer extends RoutedElement {
 	static styles = super.styles;
 
 	static get properties() {
@@ -15,20 +15,12 @@ class RepoViewer extends StyledElement {
 	}
 
 	async onBeforeEnter(location) {
-		this.username = location.params["username"];
-		this.repo = location.params["repo"];
+		super.onBeforeEnter(location);
+
 		this.branches = await getBranches(this.username, this.repo);
 	}
 
 	render() {
-		this.dispatchEvent(
-			new CustomEvent("onLoggedIn", {
-				bubbles: true,
-				composed: true,
-				detail: this.username,
-			})
-		);
-
 		const branches = this.branches.map(
 			(b) =>
 				html`<option

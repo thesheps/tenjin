@@ -1,8 +1,8 @@
-const { baseUrl, baseUserUrl, expectedUsername } = require("../testData");
+const { baseUserUrl, expectedUsername } = require("../testData");
 
 describe("Landing Page", () => {
 	beforeAll(async () => {
-		await page.goto(baseUrl);
+		await page.goto(baseUserUrl);
 	});
 
 	it("Has the expected title", async () => {

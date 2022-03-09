@@ -1,7 +1,7 @@
 import { css, html } from "https://unpkg.com/lit?module";
-import StyledElement from "../styles/styled-element.js";
+import RoutedElement from "../routed-element.js";
 
-class LandingPage extends StyledElement {
+class LandingPage extends RoutedElement {
 	static styles = [
 		super.styles,
 		css`
@@ -10,20 +10,6 @@ class LandingPage extends StyledElement {
 			}
 		`,
 	];
-
-	static get properties() {
-		return {
-			username: { type: String, state: true },
-		};
-	}
-
-	async onBeforeEnter(location) {
-		const urlParts = window.location.host.split(".");
-		const subdomain = window.location.host.split(".")[0];
-
-		this.username =
-			subdomain === "www" || urlParts.length === 1 ? "" : subdomain;
-	}
 
 	render() {
 		return html`<div id="splash" class="container">

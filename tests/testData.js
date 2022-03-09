@@ -7,7 +7,6 @@ export const expectedBranches = [
 	expectedBranch,
 ];
 export const port = "9090";
-export const baseUrl = `http://localhost:${port}`;
 export const baseUserUrl = `http://${expectedUsername}.localhost:${port}`;
-export const repoUrl = `${baseUrl}/${expectedUsername}/${expectedRepo.name}`;
+export const repoUrl = `${baseUserUrl}/${expectedRepo.name}`;
 export const branchesUrl = `${repoUrl}}/branches`;
