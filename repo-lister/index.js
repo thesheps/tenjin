@@ -1,5 +1,5 @@
 import { css, html } from "https://unpkg.com/lit?module";
-import StyledElement from "../styles/styled-element.js";
+import StyledElement from "../styled-element.js";
 import getRepos from "./get-repos.js";
 
 class RepoLister extends StyledElement {
@@ -15,7 +15,6 @@ class RepoLister extends StyledElement {
 
 	static get properties() {
 		return {
-			username: { type: String, state: true },
 			repos: { type: Array, state: true },
 		};
 	}
@@ -26,8 +25,7 @@ class RepoLister extends StyledElement {
 	}
 
 	async handleLogin(loginEvent) {
-		this.username = loginEvent.detail;
-		this.repos = await getRepos(this.username);
+		this.repos = await getRepos(loginEvent.detail);
 	}
 
 	connectedCallback() {
@@ -42,7 +40,7 @@ class RepoLister extends StyledElement {
 		const repos = this.repos.map(
 			(r) =>
 				html`<li>
-					<a class="repo" href="/${this.username}/${r.name}">${r.name}</a>
+					<a class="repo" href="/${r.name}">${r.name}</a>
 				</li>`
 		);
 

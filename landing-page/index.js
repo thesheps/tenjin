@@ -1,7 +1,7 @@
 import { css, html } from "https://unpkg.com/lit?module";
-import StyledElement from "../styles/styled-element.js";
+import RoutedElement from "../routed-element.js";
 
-class LandingPage extends StyledElement {
+class LandingPage extends RoutedElement {
 	static styles = [
 		super.styles,
 		css`
@@ -11,22 +11,12 @@ class LandingPage extends StyledElement {
 		`,
 	];
 
-	static get properties() {
-		return {
-			username: { type: String, state: true },
-		};
-	}
-
-	async onBeforeEnter(location) {
-		const urlParts = window.location.host.split(".");
-		const subdomain = window.location.host.split(".")[0];
-
-		this.username =
-			subdomain === "www" || urlParts.length === 1 ? "" : subdomain;
-	}
-
 	render() {
-		return html`<div id="splash" class="container">
+		const lister = this.username
+			? html`<repo-lister></repo-lister>`
+			: html`<div></div>`;
+
+		const splash = html`<div id="splash" class="col">
 			<hgroup>
 				<h1>Welcome to Tenjin! 🥷</h1>
 				<p>A git-flavoured documentation aggregator <i>(#documentegator)</i></p>
@@ -52,6 +42,11 @@ class LandingPage extends StyledElement {
 			</hgroup>
 
 			<github-login username="${this.username}" canSubmit="true"></github-login>
+		</div>`;
+
+		return html`<div class="row container">
+			<div class="col-md-3 margin-large">${lister}</div>
+			<div class="col">${splash}</div>
 		</div>`;
 	}
 }
