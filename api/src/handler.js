@@ -5,8 +5,6 @@ const axios = require("axios");
 const client_id = process.env.CLIENT_ID;
 const client_secret = process.env.CLIENT_SECRET;
 const headers = {
-	Accept: "application/json",
-	"Content-Type": "application/json",
 	"Access-Control-Allow-Origin": "*",
 	"Access-Control-Allow-Credentials": true,
 };
@@ -21,7 +19,7 @@ module.exports.auth = async (event) => {
 			{ params }
 		);
 
-		const accessToken = response.data;
+		const accessToken = response;
 		console.log(accessToken);
 
 		return {
