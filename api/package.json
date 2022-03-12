@@ -7,12 +7,14 @@
 		"test": "tests"
 	},
 	"scripts": {
-		"deploy": "serverless deploy"
+		"deploy": "serverless deploy",
+		"start": "env-cmd node index.js"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {
+		"env-cmd": "^10.1.0",
 		"serverless": "^3.7.4"
 	},
 	"dependencies": {
