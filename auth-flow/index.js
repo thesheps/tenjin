@@ -1,9 +1,12 @@
 import { LitElement } from "https://unpkg.com/lit?module";
+import getAccessToken from "./get-access-token.js";
 
 class AuthFlow extends LitElement {
 	async onBeforeEnter(location) {
 		const code = new URLSearchParams(window.location.search).get("code");
-		localStorage.setItem("authCode", code);
+		const accessToken = await getAccessToken(code);
+
+		console.log(accessToken);
 	}
 }
 
