@@ -1,4 +1,4 @@
-const { baseUserUrl, baseUrl, expectedUsername } = require("../testData");
+const { baseUserUrl, baseUrl, expectedAccount } = require("../testData");
 
 describe("Landing Page", () => {
 	beforeAll(async () => {
@@ -23,8 +23,8 @@ describe("Landing Page", () => {
 	});
 
 	it("Has the github login component", async () => {
-		const GithubUsername = await page.$("pierce/#github-username");
-		expect(GithubUsername).toBeTruthy();
+		const GithubAccount = await page.$("pierce/#github-account");
+		expect(GithubAccount).toBeTruthy();
 	});
 
 	it("Has the repo lister component", async () => {

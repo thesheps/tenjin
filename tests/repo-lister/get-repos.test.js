@@ -5,11 +5,11 @@ global.fetch = jest.fn(() => Promise.resolve({ json }));
 
 describe("Get Repos", () => {
 	it("Calls fetch with expected URL", async () => {
-		const expectedUsername = "foobar";
-		await getRepos(expectedUsername);
+		const expectedAccount = "foobar";
+		await getRepos(expectedAccount);
 
 		expect(global.fetch).toHaveBeenCalledWith(
-			`https://api.github.com/users/${expectedUsername}/repos`
+			`https://api.github.com/users/${expectedAccount}/repos`
 		);
 
 		expect(json).toHaveBeenCalled();

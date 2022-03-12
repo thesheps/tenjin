@@ -1,49 +1,49 @@
 import { html } from "https://unpkg.com/lit?module";
 import StyledElement from "../styled-element.js";
 
-class GithubUsername extends StyledElement {
+class GithubAccount extends StyledElement {
 	static styles = super.styles;
 
 	static get properties() {
 		return {
 			canSubmit: { type: Boolean, state: true },
-			username: { type: String, state: false },
+			account: { type: String, state: false },
 		};
 	}
 
 	connectedCallback() {
 		super.connectedCallback();
-		this.canSubmit = this.username;
+		this.canSubmit = this.account;
 	}
 
-	getUsername() {
-		return this.renderRoot.querySelector("#username");
+	getAccount() {
+		return this.renderRoot.querySelector("#account");
 	}
 
 	handleChange() {
-		this.canSubmit = this.getUsername().value.length > 0;
+		this.canSubmit = this.getAccount().value.length > 0;
 	}
 
 	async handleClick(e) {
 		e.preventDefault();
 
-		const username = this.getUsername().value;
-		const url = `${location.protocol}//${username}.${location.hostname}:${location.port}`;
+		const account = this.getAccount().value;
+		const url = `${location.protocol}//${account}.${location.hostname}:${location.port}`;
 		window.location.href = url;
 	}
 
 	render() {
-		return html`<form id="github-username">
+		return html`<form id="github-account">
 			<div class="grid">
-				<label for="username">
-					Github username / account
+				<label for="account">
+					Github account
 					<input
 						@input="${this.handleChange}"
-						value="${this.username}"
+						value="${this.account}"
 						type="text"
-						id="username"
-						name="username"
-						placeholder="username"
+						id="account"
+						name="account"
+						placeholder="account"
 						required
 					/>
 				</label>
@@ -60,4 +60,4 @@ class GithubUsername extends StyledElement {
 	}
 }
 
-customElements.define("github-username", GithubUsername);
+customElements.define("github-account", GithubAccount);

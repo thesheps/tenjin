@@ -6,45 +6,44 @@ class GithubAuth extends StyledElement {
 
 	static get properties() {
 		return {
-			canSubmit: { type: Boolean, state: true },
+			account: { type: String, state: false },
 		};
 	}
 
-	getAccessToken() {
-		return this.renderRoot.querySelector("#accessToken");
-	}
-
-	handleChange() {
-		this.canSubmit = this.getAccessToken().value.length > 0;
+	connectedCallback() {
+		super.connectedCallback();
+		window.addEventListener(
+			"onLoggedIn",
+			async (event) => (this.account = event.detail)
+		);
 	}
 
 	async handleClick(e) {
 		e.preventDefault();
+
+		const clientId = "Iv1.c32d956da87adf8b";
+		const d = location.hostname.replace(location.host.split(".")[0] + ".", "");
+		const redirectUri = `${location.protocol}//${d}:${location.port}/auth`;
+		const url = "https://github.com/login/oauth/authorize";
+
+		location.href = `${url}?client_id=${clientId}&login=${this.account}&redirect_uri=${redirectUri}`;
 	}
 
 	render() {
 		return html`<form id="github-auth">
-			<div class="grid">
-				<label for="accessToken">
-					Github access token
-					<input
-						@input="${this.handleChange}"
-						value="${this.accessToken}"
-						type="text"
-						id="accessToken"
-						name="accessToken"
-						placeholder="ghp_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-						required
-					/>
-				</label>
-			</div>
+			<h3>
+				Authorise with Github!
+				<hr />
+			</h3>
 
-			<button
-				id="go-button"
-				.disabled="${!this.canSubmit}"
-				@click="${this.handleClick}"
-			>
-				Go!
+			<p>
+				To use Tenjin with the Github account <strong>${this.account}</strong>,
+				we'll need to authorise you with the Tenjin Github app. Click the button
+				below to get going!
+			</p>
+
+			<button id="go-button" @click="${this.handleClick}">
+				Authorise with Github!
 			</button>
 		</form>`;
 	}

@@ -1,7 +1,7 @@
-import { expectedUsername, expectedRepo, expectedBranches } from "./testData";
+import { expectedAccount, expectedRepo, expectedBranches } from "./testData";
 
-const repoUrl = `https://api.github.com/users/${expectedUsername}/repos`;
-const branchesUrl = `https://api.github.com/repos/${expectedUsername}/${expectedRepo.name}/branches`;
+const repoUrl = `https://api.github.com/users/${expectedAccount}/repos`;
+const branchesUrl = `https://api.github.com/repos/${expectedAccount}/${expectedRepo.name}/branches`;
 
 export default (page) => {
 	page.setRequestInterception(true);

@@ -23,6 +23,7 @@
 			const router = new Router(document.getElementById("outlet"));
 			router.setRoutes([
 				{ path: "/", component: "landing-page" },
+				{ path: "/auth", component: "auth-flow" },
 				{ path: "/:repo", component: "repo-viewer" },
 			]);
 		</script>

@@ -6,12 +6,12 @@ global.fetch = jest.fn(() => Promise.resolve({ json }));
 
 describe("Get Branches", () => {
 	it("Calls fetch with expected URL", async () => {
-		const expectedUsername = "foobar";
+		const expectedAccount = "foobar";
 		const expectedRepo = "baz";
-		const branches = await getBranches(expectedUsername, expectedRepo);
+		const branches = await getBranches(expectedAccount, expectedRepo);
 
 		expect(global.fetch).toHaveBeenCalledWith(
-			`https://api.github.com/repos/${expectedUsername}/${expectedRepo}/branches`
+			`https://api.github.com/repos/${expectedAccount}/${expectedRepo}/branches`
 		);
 
 		expect(branches).toBe(expectedBranches);
