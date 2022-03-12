@@ -19,25 +19,22 @@ module.exports.auth = async (event) => {
 			{ params }
 		);
 
-		const body = {};
+		const json = {};
 		const vals = response.data.split("&");
 
 		for (let i = 0; i < vals.length; i++) {
 			const kvp = vals[i].split("=");
-			body[kvp[0]] = kvp[1];
+			json[kvp[0]] = kvp[1];
 		}
 
-		console.log(body);
-
 		return {
-			...headers,
-			body: JSON.stringify(body),
+			headers,
+			body: JSON.stringify(json),
 			statusCode: 200,
 		};
 	} catch (e) {
-		console.log(e.message);
 		return {
-			...headers,
+			headers,
 			body: "Couldn't obtain access token!",
 			statusCode: 403,
 		};
