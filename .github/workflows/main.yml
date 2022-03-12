@@ -16,7 +16,7 @@ jobs:
         run: |
           cd api
           npm ci
-          npm deploy
+          npm run deploy
 
   app:
     runs-on: ubuntu-latest
