@@ -1,0 +1,21 @@
+{
+	"name": "api",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"directories": {
+		"test": "tests"
+	},
+	"scripts": {
+		"deploy": "serverless deploy"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"serverless": "^3.7.4"
+	},
+	"dependencies": {
+		"axios": "^0.26.1"
+	}
+}
