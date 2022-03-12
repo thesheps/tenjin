@@ -1,7 +1,18 @@
 name: Test and Deploy
 on: [push]
 jobs:
-  test-and-deploy:
+  api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+
+      - name: Deploy 🚀
+        run: |
+          cd api
+          npx serverless deploy
+
+  app:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
