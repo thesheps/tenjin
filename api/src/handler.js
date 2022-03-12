@@ -20,6 +20,7 @@ module.exports.auth = async (event) => {
 		);
 
 		const accessToken = response.data;
+		console.log(accessToken);
 
 		return {
 			...headers,
