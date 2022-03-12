@@ -23,8 +23,8 @@ describe("Landing Page", () => {
 	});
 
 	it("Has the github login component", async () => {
-		const githubLogin = await page.$("pierce/#github-login");
-		expect(githubLogin).toBeTruthy();
+		const GithubUsername = await page.$("pierce/#github-username");
+		expect(GithubUsername).toBeTruthy();
 	});
 
 	it("Has the repo lister component", async () => {
@@ -32,5 +32,8 @@ describe("Landing Page", () => {
 
 		const repoLister = await page.$("pierce/#repo-lister");
 		expect(repoLister).toBeTruthy();
+
+		const githubAuth = await page.$("pierce/#github-auth");
+		expect(githubAuth).toBeTruthy();
 	});
 });
