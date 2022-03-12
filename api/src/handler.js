@@ -4,7 +4,7 @@ module.exports.auth = async (event) => {
 	const code = event.queryStringParameters["code"];
 
 	return {
-		body: code,
+		body: { accessToken: code },
 		statusCode: 200,
 		headers: {
 			"Access-Control-Allow-Origin": "*",
