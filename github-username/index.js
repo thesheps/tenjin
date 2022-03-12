@@ -1,7 +1,7 @@
 import { html } from "https://unpkg.com/lit?module";
 import StyledElement from "../styled-element.js";
 
-class GithubLogin extends StyledElement {
+class GithubUsername extends StyledElement {
 	static styles = super.styles;
 
 	static get properties() {
@@ -33,10 +33,10 @@ class GithubLogin extends StyledElement {
 	}
 
 	render() {
-		return html`<form id="github-login">
+		return html`<form id="github-username">
 			<div class="grid">
 				<label for="username">
-					Git username
+					Github username / account
 					<input
 						@input="${this.handleChange}"
 						value="${this.username}"
@@ -60,4 +60,4 @@ class GithubLogin extends StyledElement {
 	}
 }
 
-customElements.define("github-login", GithubLogin);
+customElements.define("github-username", GithubUsername);
