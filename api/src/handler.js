@@ -27,6 +27,8 @@ module.exports.auth = async (event) => {
 			body[kvp[0]] = kvp[1];
 		}
 
+		console.log(body);
+
 		return {
 			...headers,
 			body: JSON.stringify(body),
