@@ -14,13 +14,15 @@ module.exports.auth = async (event) => {
 		code,
 	};
 
-	const output = await axios.get(
+	const response = await axios.get(
 		"https://github.com/login/oauth/access_token?",
 		{ params }
 	);
 
+	const accessToken = response.json();
+
 	return {
-		body: JSON.stringify({ accessToken: output }),
+		body: JSON.stringify(accessToken),
 		statusCode: 200,
 		headers: {
 			"Access-Control-Allow-Origin": "*",
