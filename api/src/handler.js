@@ -23,7 +23,7 @@ module.exports.auth = async (event) => {
 		const vals = response.data.split("&");
 
 		for (let i = 0; i < vals.length; i++) {
-			const kvp = vals.split("=");
+			const kvp = vals[i].split("=");
 			body[kvp[0]] = kvp[1];
 		}
 
@@ -35,6 +35,7 @@ module.exports.auth = async (event) => {
 			statusCode: 200,
 		};
 	} catch (e) {
+		console.log(e.message);
 		return {
 			...headers,
 			body: "Couldn't obtain access token!",
