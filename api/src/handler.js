@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports.auth = async (event) => {
-	const code = event.input.queryStringParameters["code"];
+	const code = event.queryStringParameters["code"];
 
 	return {
 		body: code,
