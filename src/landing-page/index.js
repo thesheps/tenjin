@@ -12,7 +12,11 @@ class LandingPage extends RoutedElement {
 	];
 
 	render() {
-		return html`<div id="splash" class="container">
+		const lister = this.username
+			? html`<repo-lister></repo-lister>`
+			: html`<div></div>`;
+
+		const splash = html`<div id="splash" class="col">
 			<hgroup>
 				<h1>Welcome to Tenjin! 🥷</h1>
 				<p>A git-flavoured documentation aggregator <i>(#documentegator)</i></p>
@@ -38,6 +42,11 @@ class LandingPage extends RoutedElement {
 			</hgroup>
 
 			<github-login username="${this.username}" canSubmit="true"></github-login>
+		</div>`;
+
+		return html`<div class="row container">
+			<div class="col-md-3 margin-large">${lister}</div>
+			<div class="col">${splash}</div>
 		</div>`;
 	}
 }

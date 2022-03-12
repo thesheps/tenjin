@@ -1,16 +1,15 @@
-import { baseUserUrl } from "../testData";
+import { baseUrl, expectedUsername } from "../testData";
 
 describe("Github Login", () => {
-	it("Allows logging in from a subdomain url", async () => {
-		await page.goto(baseUserUrl);
+	it("Redirects the user to the correct page", async () => {
+		await page.goto(baseUrl);
+		await page.type("pierce/input[name=username]", expectedUsername);
 
-		const loadButton = await page.$("pierce/#load-button");
-		var isLoading = await page.evaluate((el) => el.ariaBusy, loadButton);
-		expect(isLoading).toBeFalsy();
+		const goButton = await page.$("pierce/#go-button");
+		await goButton.click();
+		await page.waitForNavigation();
 
-		await loadButton.click();
-
-		isLoading = await page.evaluate((el) => el.ariaBusy, loadButton);
-		expect(isLoading).toBeTruthy();
+		const url = await page.url();
+		expect(url).toBe(`http://${expectedUsername}.localhost:9090/`);
 	});
 });

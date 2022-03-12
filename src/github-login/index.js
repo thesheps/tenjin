@@ -7,7 +7,6 @@ class GithubLogin extends StyledElement {
 	static get properties() {
 		return {
 			canSubmit: { type: Boolean, state: true },
-			isLoading: { type: Boolean, state: true },
 			username: { type: String, state: false },
 		};
 	}
@@ -28,25 +27,16 @@ class GithubLogin extends StyledElement {
 	async handleClick(e) {
 		e.preventDefault();
 
-		this.isLoading = true;
 		const username = this.getUsername().value;
-
-		this.dispatchEvent(
-			new CustomEvent("onLoggedIn", {
-				bubbles: true,
-				composed: true,
-				detail: username,
-			})
-		);
-
-		this.isLoading = false;
+		const url = `${location.protocol}//${username}.${location.hostname}:${location.port}`;
+		window.location.href = url;
 	}
 
 	render() {
 		return html`<form id="github-login">
 			<div class="grid">
 				<label for="username">
-					Git user
+					Git username
 					<input
 						@input="${this.handleChange}"
 						value="${this.username}"
@@ -60,12 +50,11 @@ class GithubLogin extends StyledElement {
 			</div>
 
 			<button
-				id="load-button"
-				aria-busy="${this.isLoading}"
-				.disabled="${!this.canSubmit || this.isLoading}"
+				id="go-button"
+				.disabled="${!this.canSubmit}"
 				@click="${this.handleClick}"
 			>
-				${this.isLoading ? "Loading..." : "Load"}
+				Go!
 			</button>
 		</form>`;
 	}
