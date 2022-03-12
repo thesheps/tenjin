@@ -1,5 +1,5 @@
 import { LitElement } from "https://unpkg.com/lit?module";
-import getAccessToken from "./get-access-token";
+import getAccessToken from "./get-access-token.js";
 
 class AuthFlow extends LitElement {
 	async onBeforeEnter(location) {
