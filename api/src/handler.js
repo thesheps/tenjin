@@ -2,6 +2,7 @@
 
 module.exports.auth = async (event) => {
 	const code = event.queryStringParameters["code"];
+	console.log(code);
 
 	return {
 		body: { accessToken: code },
