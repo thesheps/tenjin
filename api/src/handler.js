@@ -1,15 +1,10 @@
 "use strict";
 
 module.exports.auth = async (event) => {
+	const code = event.input.queryStringParameters["code"];
+
 	return {
 		statusCode: 200,
-		body: JSON.stringify(
-			{
-				message: "Go Serverless v2.0! Your function executed successfully!",
-				input: event,
-			},
-			null,
-			2
-		),
+		body: code,
 	};
 };
