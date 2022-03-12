@@ -15,7 +15,8 @@ jobs:
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
         run: |
           cd api
-          npx serverless deploy
+          npm ci
+          npm deploy
 
   app:
     runs-on: ubuntu-latest
