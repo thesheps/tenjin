@@ -37,10 +37,10 @@ class IntroSplash extends StyledElement {
 				</p>
 			</hgroup>
 
-			<github-username
-				username="${this.username}"
+			<github-account
+				account="${this.account}"
 				canSubmit="true"
-			></github-username>
+			></github-account>
 		</div>`;
 	}
 }
