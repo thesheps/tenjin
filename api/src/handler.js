@@ -14,7 +14,7 @@ module.exports.auth = async (event) => {
 	const params = { client_id, client_secret, code };
 
 	try {
-		const response = await axios.get(
+		const response = await axios.post(
 			"https://github.com/login/oauth/access_token?",
 			{ params }
 		);
