@@ -9,6 +9,7 @@ jobs:
 
       - name: Install and Test 🧪
         run: |
+          cd app
           cp .env-default .env
           npm ci
           npm t
@@ -17,4 +18,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
           branch: gh-pages
-          folder: src
+          folder: app/src
