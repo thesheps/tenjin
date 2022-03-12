@@ -4,7 +4,11 @@ module.exports.auth = async (event) => {
 	const code = event.input.queryStringParameters["code"];
 
 	return {
-		statusCode: 200,
 		body: code,
+		statusCode: 200,
+		headers: {
+			"Access-Control-Allow-Origin": "*",
+			"Access-Control-Allow-Credentials": true,
+		},
 	};
 };
