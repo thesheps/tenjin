@@ -10,6 +10,8 @@ provider:
 functions:
   auth:
     handler: src/handler.auth
+    environment:
+      CLIENT_SECRET: ${env:CLIENT_SECRET}
     events:
       - http:
           path: /
