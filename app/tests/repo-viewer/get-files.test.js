@@ -1,4 +1,4 @@
-import getFiles from "../../src/repo-viewer/get-files";
+import getFiles from "../../src/components/repo-viewer/get-files";
 
 const expectedFiles = [{ path: "foo" }];
 const json = jest.fn().mockReturnValue({ tree: expectedFiles });
