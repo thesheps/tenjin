@@ -5,8 +5,6 @@ class AuthFlow extends LitElement {
 	async onBeforeEnter(location) {
 		const code = new URLSearchParams(window.location.search).get("code");
 		const accessToken = await getAccessToken(code);
-
-		console.log(accessToken);
 	}
 }
 
