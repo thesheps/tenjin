@@ -1,4 +1,4 @@
-name: Test and Deploy
+name: Test & Deploy
 on: [push]
 jobs:
   api:
@@ -7,7 +7,7 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
 
-      - name: Deploy 🚀
+      - name: Test & Deploy 🚀
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -16,6 +16,7 @@ jobs:
         run: |
           cd api
           npm ci
+          npm t
           npm run deploy
 
   app:
@@ -25,7 +26,7 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
 
-      - name: Install and Test 🧪
+      - name: Test 🧪
         run: |
           cd app
           cp .env-default .env

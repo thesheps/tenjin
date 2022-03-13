@@ -8,13 +8,15 @@
 	},
 	"scripts": {
 		"deploy": "serverless deploy",
-		"start": "env-cmd node index.js"
+		"start": "env-cmd node index.js",
+		"test": "jest"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {
 		"env-cmd": "^10.1.0",
+		"jest": "^27.5.1",
 		"serverless": "^3.7.4"
 	},
 	"dependencies": {

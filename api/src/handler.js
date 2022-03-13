@@ -2,14 +2,14 @@
 
 const axios = require("axios");
 
-const client_id = process.env.CLIENT_ID;
-const client_secret = process.env.CLIENT_SECRET;
-const headers = {
-	"Access-Control-Allow-Origin": "*",
-	"Access-Control-Allow-Credentials": true,
-};
-
 module.exports.auth = async (event) => {
+	const client_id = process.env.CLIENT_ID;
+	const client_secret = process.env.CLIENT_SECRET;
+	const headers = {
+		"Access-Control-Allow-Origin": "*",
+		"Access-Control-Allow-Credentials": true,
+	};
+
 	const code = event.queryStringParameters["code"];
 	const params = { client_id, client_secret, code };
 
