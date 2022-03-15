@@ -1,13 +1,10 @@
-import { html, LitElement } from "https://unpkg.com/lit?module";
+import { html } from "https://unpkg.com/lit?module";
 import { state } from "../../state/index.js";
 import styles from "../../styles/styles.js";
+import ConnectedElement from "../connected-element/index.js";
 
-class GithubAuth extends LitElement {
+class GithubAuth extends ConnectedElement {
 	static styles = styles;
-
-	async firstUpdated() {
-		window.addEventListener("STATE_UPDATED", () => this.requestUpdate());
-	}
 
 	async handleClick(e) {
 		e.preventDefault();

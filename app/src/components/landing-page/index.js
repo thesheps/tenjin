@@ -1,13 +1,10 @@
-import { html, LitElement } from "https://unpkg.com/lit?module";
+import { html } from "https://unpkg.com/lit?module";
 import { state } from "../../state/index.js";
 import styles from "../../styles/styles.js";
+import ConnectedElement from "../connected-element/index.js";
 
-class LandingPage extends LitElement {
+class LandingPage extends ConnectedElement {
 	static styles = styles;
-
-	async firstUpdated() {
-		window.addEventListener("STATE_UPDATED", () => this.requestUpdate());
-	}
 
 	async onBeforeEnter(location) {
 		const urlParts = window.location.host.split(".");

@@ -1,9 +1,10 @@
-import { html, LitElement } from "https://unpkg.com/lit?module";
+import { html } from "https://unpkg.com/lit?module";
 import { state } from "../../state/index.js";
 import getBranches from "./get-branches.js";
 import styles from "../../styles/styles.js";
+import ConnectedElement from "../connected-element/index.js";
 
-class RepoViewer extends LitElement {
+class RepoViewer extends ConnectedElement {
 	static styles = styles;
 
 	static get properties() {

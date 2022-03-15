@@ -1,8 +1,9 @@
-import { html, LitElement } from "https://unpkg.com/lit?module";
+import { html } from "https://unpkg.com/lit?module";
 import { state } from "../../state/index.js";
 import styles from "../../styles/styles.js";
+import ConnectedElement from "../connected-element/index.js";
 
-class GithubAccount extends LitElement {
+class GithubAccount extends ConnectedElement {
 	static styles = styles;
 
 	static get properties() {
