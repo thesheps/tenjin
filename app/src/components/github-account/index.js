@@ -1,8 +1,8 @@
 import { html, LitElement } from "https://unpkg.com/lit?module";
-import { state, withState } from "../../state/index.js";
+import { state } from "../../state/index.js";
 import styles from "../../styles/styles.js";
 
-class GithubAccount extends withState(LitElement, state) {
+class GithubAccount extends LitElement {
 	static styles = styles;
 
 	static get properties() {

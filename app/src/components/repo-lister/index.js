@@ -1,9 +1,9 @@
 import { css, html, LitElement } from "https://unpkg.com/lit?module";
-import { state, withState } from "../../state/index.js";
+import { state } from "../../state/index.js";
 import styles from "../../styles/styles.js";
 import getRepos from "./get-repos.js";
 
-class RepoLister extends withState(LitElement, state) {
+class RepoLister extends LitElement {
 	static styles = [
 		styles,
 		css`

@@ -1,9 +1,9 @@
 import { html, LitElement } from "https://unpkg.com/lit?module";
-import { state, withState } from "../../state/index.js";
+import { state } from "../../state/index.js";
 import getBranches from "./get-branches.js";
 import styles from "../../styles/styles.js";
 
-class RepoViewer extends withState(LitElement, state) {
+class RepoViewer extends LitElement {
 	static styles = styles;
 
 	static get properties() {
