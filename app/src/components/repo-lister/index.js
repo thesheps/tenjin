@@ -1,6 +1,5 @@
 import { css, html, LitElement } from "https://unpkg.com/lit?module";
-import withState from "../../state/withState.js";
-import state from "../../state/initialState.js";
+import { state, withState } from "../../state/index.js";
 import styles from "../../styles/styles.js";
 import getRepos from "./get-repos.js";
 
