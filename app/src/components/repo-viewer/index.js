@@ -8,8 +8,6 @@ class RepoViewer extends withState(LitElement, state) {
 
 	static get properties() {
 		return {
-			account: { type: String, state: true },
-			repo: { type: String, state: true },
 			branches: { type: Array, state: true },
 			files: { type: Array, state: true },
 		};

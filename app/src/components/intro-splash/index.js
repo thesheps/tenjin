@@ -37,10 +37,7 @@ class IntroSplash extends LitElement {
 				</p>
 			</hgroup>
 
-			<github-account
-				account="${this.account}"
-				canSubmit="true"
-			></github-account>
+			<github-account></github-account>
 		</div>`;
 	}
 }

@@ -8,7 +8,6 @@ class GithubAccount extends withState(LitElement, state) {
 	static get properties() {
 		return {
 			canSubmit: { type: Boolean, state: true },
-			account: { type: String, state: false },
 		};
 	}
 

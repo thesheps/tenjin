@@ -1,21 +1,12 @@
 import { html, LitElement } from "https://unpkg.com/lit?module";
+import { state, withState } from "../../state/index.js";
 import styles from "../../styles/styles.js";
 
-class GithubAuth extends LitElement {
+class GithubAuth extends withState(LitElement, state) {
 	static styles = styles;
 
-	static get properties() {
-		return {
-			account: { type: String, state: false },
-		};
-	}
-
-	connectedCallback() {
-		super.connectedCallback();
-		window.addEventListener(
-			"onLoggedIn",
-			async (event) => (this.account = event.detail)
-		);
+	async firstUpdated() {
+		window.addEventListener("STATE_UPDATED", () => this.requestUpdate());
 	}
 
 	async handleClick(e) {
@@ -26,7 +17,7 @@ class GithubAuth extends LitElement {
 		const redirectUri = `${location.protocol}//${d}:${location.port}/auth`;
 		const url = "https://github.com/login/oauth/authorize";
 
-		location.href = `${url}?client_id=${clientId}&login=${this.account}&redirect_uri=${redirectUri}`;
+		location.href = `${url}?client_id=${clientId}&login=${state.account}&redirect_uri=${redirectUri}`;
 	}
 
 	render() {
@@ -37,7 +28,7 @@ class GithubAuth extends LitElement {
 			</h3>
 
 			<p>
-				To use Tenjin with the Github account <strong>${this.account}</strong>,
+				To use Tenjin with the Github account <strong>${state.account}</strong>,
 				we'll need to authorise you with the Tenjin Github app. Click the button
 				below to get going!
 			</p>
