@@ -9,12 +9,11 @@ class GithubAuth extends ConnectedElement {
 	async handleClick(e) {
 		e.preventDefault();
 
-		const clientId = "Iv1.c32d956da87adf8b";
 		const d = location.hostname.replace(location.host.split(".")[0] + ".", "");
 		const redirectUri = `${location.protocol}//${d}:${location.port}/auth`;
 		const url = "https://github.com/login/oauth/authorize";
 
-		location.href = `${url}?client_id=${clientId}&login=${state.account}&redirect_uri=${redirectUri}`;
+		location.href = `${url}?client_id=${state.clientId}&login=${state.account}&redirect_uri=${redirectUri}`;
 	}
 
 	render() {

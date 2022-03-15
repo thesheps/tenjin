@@ -12,11 +12,6 @@ class GithubAccount extends ConnectedElement {
 		};
 	}
 
-	connectedCallback() {
-		super.connectedCallback();
-		this.canSubmit = this.account;
-	}
-
 	getAccount() {
 		return this.renderRoot.querySelector("#account");
 	}
@@ -28,8 +23,9 @@ class GithubAccount extends ConnectedElement {
 	async handleClick(e) {
 		e.preventDefault();
 		state.account = this.getAccount().value;
-		const url = `${location.protocol}//${state.account}.${location.hostname}:${location.port}`;
-		window.location.href = url;
+		state.baseUrl = `${location.protocol}//${state.account}.${location.hostname}:${location.port}`;
+
+		window.location.href = state.baseUrl;
 	}
 
 	render() {
