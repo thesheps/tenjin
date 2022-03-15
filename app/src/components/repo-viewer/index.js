@@ -1,9 +1,11 @@
-import { html } from "https://unpkg.com/lit?module";
-import RoutedElement from "../routed-element.js";
+import { html, LitElement } from "https://unpkg.com/lit?module";
+import withState from "../../state/withState.js";
+import state from "../../state/initialState.js";
 import getBranches from "./get-branches.js";
+import styles from "../../styles/styles.js";
 
-class RepoViewer extends RoutedElement {
-	static styles = super.styles;
+class RepoViewer extends withState(LitElement, state) {
+	static styles = styles;
 
 	static get properties() {
 		return {
@@ -15,9 +17,13 @@ class RepoViewer extends RoutedElement {
 	}
 
 	async onBeforeEnter(location) {
-		super.onBeforeEnter(location);
+		const urlParts = window.location.host.split(".");
+		const sub = window.location.host.split(".")[0];
 
-		this.branches = await getBranches(this.account, this.repo);
+		state.account = sub === "www" || urlParts.length === 1 ? "" : sub;
+		state.repo = location.params["repo"];
+
+		this.branches = await getBranches(state.account, state.repo);
 	}
 
 	render() {

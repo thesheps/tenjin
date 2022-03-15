@@ -1,8 +1,8 @@
-import { html } from "https://unpkg.com/lit?module";
-import StyledElement from "../styled-element.js";
+import { html, LitElement } from "https://unpkg.com/lit?module";
+import styles from "../../styles/styles.js";
 
-class GithubAuth extends StyledElement {
-	static styles = super.styles;
+class GithubAuth extends LitElement {
+	static styles = styles;
 
 	static get properties() {
 		return {

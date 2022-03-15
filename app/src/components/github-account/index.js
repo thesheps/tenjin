@@ -1,8 +1,10 @@
-import { html } from "https://unpkg.com/lit?module";
-import StyledElement from "../styled-element.js";
+import { html, LitElement } from "https://unpkg.com/lit?module";
+import withState from "../../state/withState.js";
+import state from "../../state/initialState.js";
+import styles from "../../styles/styles.js";
 
-class GithubAccount extends StyledElement {
-	static styles = super.styles;
+class GithubAccount extends withState(LitElement, state) {
+	static styles = styles;
 
 	static get properties() {
 		return {
@@ -26,9 +28,8 @@ class GithubAccount extends StyledElement {
 
 	async handleClick(e) {
 		e.preventDefault();
-
-		const account = this.getAccount().value;
-		const url = `${location.protocol}//${account}.${location.hostname}:${location.port}`;
+		state.account = this.getAccount().value;
+		const url = `${location.protocol}//${state.account}.${location.hostname}:${location.port}`;
 		window.location.href = url;
 	}
 
@@ -39,7 +40,6 @@ class GithubAccount extends StyledElement {
 					Github account
 					<input
 						@input="${this.handleChange}"
-						value="${this.account}"
 						type="text"
 						id="account"
 						name="account"

@@ -1,10 +1,12 @@
-import { css, html } from "https://unpkg.com/lit?module";
-import StyledElement from "../styled-element.js";
+import { css, html, LitElement } from "https://unpkg.com/lit?module";
+import withState from "../../state/withState.js";
+import state from "../../state/initialState.js";
+import styles from "../../styles/styles.js";
 import getRepos from "./get-repos.js";
 
-class RepoLister extends StyledElement {
+class RepoLister extends withState(LitElement, state) {
 	static styles = [
-		super.styles,
+		styles,
 		css`
 			#repo-lister {
 				overflow-y: scroll;
@@ -24,16 +26,8 @@ class RepoLister extends StyledElement {
 		this.repos = [];
 	}
 
-	async handleLogin(loginEvent) {
-		this.repos = await getRepos(loginEvent.detail);
-	}
-
-	connectedCallback() {
-		super.connectedCallback();
-		window.addEventListener(
-			"onLoggedIn",
-			async (event) => await this.handleLogin(event)
-		);
+	async firstUpdated() {
+		this.repos = await getRepos(state.account);
 	}
 
 	render() {
