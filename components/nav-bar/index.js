@@ -1,9 +1,9 @@
-import { html, css } from "https://unpkg.com/lit?module";
-import StyledElement from "../styled-element.js";
+import { css, html, LitElement } from "https://unpkg.com/lit?module";
+import styles from "../../styles/styles.js";
 
-class NavBar extends StyledElement {
+class NavBar extends LitElement {
 	static styles = [
-		super.styles,
+		styles,
 		css`
 			nav {
 				box-shadow: 0 0.2px 0;

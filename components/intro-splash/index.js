@@ -1,9 +1,9 @@
-import { css, html } from "https://unpkg.com/lit?module";
-import StyledElement from "../styled-element.js";
+import { css, html, LitElement } from "https://unpkg.com/lit?module";
+import styles from "../../styles/styles.js";
 
-class IntroSplash extends StyledElement {
+class IntroSplash extends LitElement {
 	static styles = [
-		super.styles,
+		styles,
 		css`
 			#splash {
 				height: 100vh;
@@ -37,10 +37,7 @@ class IntroSplash extends StyledElement {
 				</p>
 			</hgroup>
 
-			<github-account
-				account="${this.account}"
-				canSubmit="true"
-			></github-account>
+			<github-account></github-account>
 		</div>`;
 	}
 }

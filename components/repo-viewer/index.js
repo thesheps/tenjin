@@ -1,23 +1,27 @@
 import { html } from "https://unpkg.com/lit?module";
-import RoutedElement from "../routed-element.js";
+import { state } from "../../state/index.js";
 import getBranches from "./get-branches.js";
+import styles from "../../styles/styles.js";
+import ConnectedElement from "../connected-element/index.js";
 
-class RepoViewer extends RoutedElement {
-	static styles = super.styles;
+class RepoViewer extends ConnectedElement {
+	static styles = styles;
 
 	static get properties() {
 		return {
-			account: { type: String, state: true },
-			repo: { type: String, state: true },
 			branches: { type: Array, state: true },
 			files: { type: Array, state: true },
 		};
 	}
 
 	async onBeforeEnter(location) {
-		super.onBeforeEnter(location);
+		const urlParts = window.location.host.split(".");
+		const sub = window.location.host.split(".")[0];
 
-		this.branches = await getBranches(this.account, this.repo);
+		state.account = sub === "www" || urlParts.length === 1 ? "" : sub;
+		state.repo = location.params["repo"];
+
+		this.branches = await getBranches(state.account, state.repo);
 	}
 
 	render() {

@@ -1,19 +1,15 @@
 import { html } from "https://unpkg.com/lit?module";
-import StyledElement from "../styled-element.js";
+import { state } from "../../state/index.js";
+import styles from "../../styles/styles.js";
+import ConnectedElement from "../connected-element/index.js";
 
-class GithubAccount extends StyledElement {
-	static styles = super.styles;
+class GithubAccount extends ConnectedElement {
+	static styles = styles;
 
 	static get properties() {
 		return {
 			canSubmit: { type: Boolean, state: true },
-			account: { type: String, state: false },
 		};
-	}
-
-	connectedCallback() {
-		super.connectedCallback();
-		this.canSubmit = this.account;
 	}
 
 	getAccount() {
@@ -26,10 +22,10 @@ class GithubAccount extends StyledElement {
 
 	async handleClick(e) {
 		e.preventDefault();
+		state.account = this.getAccount().value;
+		state.baseUrl = `${location.protocol}//${state.account}.${location.hostname}:${location.port}`;
 
-		const account = this.getAccount().value;
-		const url = `${location.protocol}//${account}.${location.hostname}:${location.port}`;
-		window.location.href = url;
+		window.location.href = state.baseUrl;
 	}
 
 	render() {
@@ -39,7 +35,6 @@ class GithubAccount extends StyledElement {
 					Github account
 					<input
 						@input="${this.handleChange}"
-						value="${this.account}"
 						type="text"
 						id="account"
 						name="account"

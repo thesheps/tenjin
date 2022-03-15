@@ -1,13 +1,25 @@
 import { html } from "https://unpkg.com/lit?module";
-import RoutedElement from "../routed-element.js";
+import { state } from "../../state/index.js";
+import styles from "../../styles/styles.js";
+import ConnectedElement from "../connected-element/index.js";
 
-class LandingPage extends RoutedElement {
+class LandingPage extends ConnectedElement {
+	static styles = styles;
+
+	async onBeforeEnter(location) {
+		const urlParts = window.location.host.split(".");
+		const sub = window.location.host.split(".")[0];
+
+		state.account = sub === "www" || urlParts.length === 1 ? "" : sub;
+		state.repo = location.params["repo"];
+	}
+
 	render() {
-		const lister = this.account
+		const lister = state.account
 			? html`<repo-lister></repo-lister>`
 			: html`<div></div>`;
 
-		const login = this.account
+		const login = state.account
 			? html`<github-auth></github-auth>`
 			: html`<intro-splash></intro-splash>`;
 
