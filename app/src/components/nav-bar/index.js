@@ -38,7 +38,7 @@ class NavBar extends ConnectedElement {
 			</li>
 		</ul>`;
 
-		return state.account
+		return state.loggedIn
 			? html`<nav id="nav-bar" class="container-fluid">${brand}${logout}</nav>`
 			: html`<nav id="nav-bar" class="container-fluid">${brand}</nav>`;
 	}

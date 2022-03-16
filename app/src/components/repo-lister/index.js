@@ -28,7 +28,10 @@ class RepoLister extends ConnectedElement {
 
 	async firstUpdated() {
 		super.firstUpdated();
-		this.repos = await getRepos(state.account, state.accessToken);
+
+		if (state.accessToken) {
+			this.repos = await getRepos(state.account, state.accessToken);
+		}
 	}
 
 	render() {
@@ -38,13 +41,13 @@ class RepoLister extends ConnectedElement {
 			</li>`
 		);
 
-		return html`<div>
+		const yourRepos = html`<div id="repo-lister">
 			<h3>
 				Your repos
 				<hr />
 			</h3>
 
-			<aside id="repo-lister">
+			<aside>
 				<nav>
 					<ul>
 						${repos}
@@ -52,6 +55,8 @@ class RepoLister extends ConnectedElement {
 				</nav>
 			</aside>
 		</div>`;
+
+		return this.repos.length > 0 ? yourRepos : html`<div></div>`;
 	}
 }
 

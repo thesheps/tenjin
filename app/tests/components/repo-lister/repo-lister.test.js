@@ -14,6 +14,14 @@ describe("Repo Lister", () => {
 		expect(repo).toMatch(expectedRepo.name);
 	});
 
+	it("Displays an empty div if the repos cannot be obtained", async () => {
+		await page.evaluate(() => localStorage.clear());
+
+		const repoLister = await page.$("pierce/#repo-lister");
+
+		expect(repoLister).toMatch("");
+	});
+
 	afterAll(async () => {
 		await page.evaluate(() => localStorage.clear());
 	});
