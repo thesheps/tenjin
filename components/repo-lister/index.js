@@ -27,7 +27,8 @@ class RepoLister extends ConnectedElement {
 	}
 
 	async firstUpdated() {
-		this.repos = await getRepos(state.account);
+		super.firstUpdated();
+		this.repos = await getRepos(state.account, state.accessToken);
 	}
 
 	render() {

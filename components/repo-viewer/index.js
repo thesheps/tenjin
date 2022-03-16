@@ -15,13 +15,15 @@ class RepoViewer extends ConnectedElement {
 	}
 
 	async onBeforeEnter(location) {
-		const urlParts = window.location.host.split(".");
-		const sub = window.location.host.split(".")[0];
-
-		state.account = sub === "www" || urlParts.length === 1 ? "" : sub;
 		state.repo = location.params["repo"];
 
-		this.branches = await getBranches(state.account, state.repo);
+		if (!state.account || !state.accessToken) window.location.href = "/";
+
+		this.branches = await getBranches(
+			state.account,
+			state.repo,
+			state.accessToken
+		);
 	}
 
 	render() {
@@ -35,17 +37,22 @@ class RepoViewer extends ConnectedElement {
 				</option>`
 		);
 
-		return html`<div id="repo-viewer">
-			<h3>
-				${this.repo}
-				<hr />
-			</h3>
+		return html`<div class="row container">
+			<div class="col-md-3 margin-large"><repo-lister></repo-lister></div>
+			<div class="col">
+				<div id="repo-viewer">
+					<h3>
+						${state.repo}
+						<hr />
+					</h3>
 
-			<label for="branch">Branches</label>
-			<select id="branches" required>
-				<option value="">Select a Branch...</option>
-				${branches}
-			</select>
+					<label for="branch">Branches</label>
+					<select id="branches" required>
+						<option value="">Select a Branch...</option>
+						${branches}
+					</select>
+				</div>
+			</div>
 		</div>`;
 	}
 }

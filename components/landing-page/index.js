@@ -7,20 +7,16 @@ class LandingPage extends ConnectedElement {
 	static styles = styles;
 
 	async onBeforeEnter(location) {
-		const urlParts = window.location.host.split(".");
-		const sub = window.location.host.split(".")[0];
-
-		state.account = sub === "www" || urlParts.length === 1 ? "" : sub;
 		state.repo = location.params["repo"];
 	}
 
 	render() {
-		const lister = state.account
+		const lister = state.accessToken
 			? html`<repo-lister></repo-lister>`
 			: html`<div></div>`;
 
-		const login = state.account
-			? html`<github-auth></github-auth>`
+		const login = state.accessToken
+			? html`<auth-splash></intro-splash>`
 			: html`<intro-splash></intro-splash>`;
 
 		return html`<div class="row container">

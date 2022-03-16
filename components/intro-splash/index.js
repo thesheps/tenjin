@@ -1,15 +1,8 @@
-import { css, html, LitElement } from "https://unpkg.com/lit?module";
+import { html, LitElement } from "https://unpkg.com/lit?module";
 import styles from "../../styles/styles.js";
 
 class IntroSplash extends LitElement {
-	static styles = [
-		styles,
-		css`
-			#splash {
-				height: 100vh;
-			}
-		`,
-	];
+	static styles = styles;
 
 	render() {
 		return html`<div id="splash" class="col">
@@ -37,7 +30,7 @@ class IntroSplash extends LitElement {
 				</p>
 			</hgroup>
 
-			<github-account></github-account>
+			<github-auth></github-auth>
 		</div>`;
 	}
 }
