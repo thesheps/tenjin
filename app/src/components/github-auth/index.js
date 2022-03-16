@@ -6,8 +6,23 @@ import ConnectedElement from "../connected-element/index.js";
 class GithubAuth extends ConnectedElement {
 	static styles = styles;
 
+	static get properties() {
+		return {
+			canSubmit: { type: Boolean, state: true },
+		};
+	}
+
+	getAccount() {
+		return this.renderRoot.querySelector("#account");
+	}
+
+	handleChange() {
+		this.canSubmit = this.getAccount().value.length > 0;
+	}
+
 	async handleClick(e) {
 		e.preventDefault();
+		state.account = this.getAccount().value;
 
 		const d = location.hostname.replace(location.host.split(".")[0] + ".", "");
 		const redirectUri = `${location.protocol}//${d}:${location.port}/auth`;
@@ -18,18 +33,25 @@ class GithubAuth extends ConnectedElement {
 
 	render() {
 		return html`<form id="github-auth">
-			<h3>
-				Authorise with Github!
-				<hr />
-			</h3>
+			<div class="grid">
+				<label for="account">
+					Github account
+					<input
+						@input="${this.handleChange}"
+						type="text"
+						id="account"
+						name="account"
+						placeholder="account"
+						required
+					/>
+				</label>
+			</div>
 
-			<p>
-				To use Tenjin with the Github account <strong>${state.account}</strong>,
-				we'll need to authorise you with the Tenjin Github app. Click the button
-				below to get going!
-			</p>
-
-			<button id="go-button" @click="${this.handleClick}">
+			<button
+				id="go-button"
+				.disabled="${!this.canSubmit}"
+				@click="${this.handleClick}"
+			>
 				Authorise with Github!
 			</button>
 		</form>`;

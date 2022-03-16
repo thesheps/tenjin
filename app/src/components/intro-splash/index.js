@@ -37,7 +37,7 @@ class IntroSplash extends LitElement {
 				</p>
 			</hgroup>
 
-			<github-account></github-account>
+			<github-auth></github-auth>
 		</div>`;
 	}
 }

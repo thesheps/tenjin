@@ -5,5 +5,4 @@ export default createState({
 	repo: "",
 	account: "",
 	accessToken: "",
-	baseUrl: "",
 });

@@ -3,7 +3,7 @@ import { expectedAccount, expectedRepo, expectedBranches } from "./testData";
 const repoUrl = `https://api.github.com/users/${expectedAccount}/repos`;
 const branchesUrl = `https://api.github.com/repos/${expectedAccount}/${expectedRepo.name}/branches`;
 
-export default (page) => {
+export default async (page, url) => {
 	page.setRequestInterception(true);
 	page.on("request", (request) => {
 		const url = request.url();
@@ -26,4 +26,16 @@ export default (page) => {
 				break;
 		}
 	});
+
+	await page.goto(url);
+	await page.evaluate(() =>
+		localStorage.setItem(
+			"tenjinState",
+			JSON.stringify({
+				account: "my-lovely-account",
+				accessToken: "my-lovely-token",
+			})
+		)
+	);
+	await page.goto(url, { waitUntil: "networkidle2" });
 };

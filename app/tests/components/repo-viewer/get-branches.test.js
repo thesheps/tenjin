@@ -8,10 +8,20 @@ describe("Get Branches", () => {
 	it("Calls fetch with expected URL", async () => {
 		const expectedAccount = "foobar";
 		const expectedRepo = "baz";
-		const branches = await getBranches(expectedAccount, expectedRepo);
+		const expectedToken = "qux";
+		const branches = await getBranches(
+			expectedAccount,
+			expectedRepo,
+			expectedToken
+		);
 
 		expect(global.fetch).toHaveBeenCalledWith(
-			`https://api.github.com/repos/${expectedAccount}/${expectedRepo}/branches`
+			`https://api.github.com/repos/${expectedAccount}/${expectedRepo}/branches`,
+			{
+				headers: {
+					Authorization: `token ${expectedToken}`,
+				},
+			}
 		);
 
 		expect(branches).toBe(expectedBranches);

@@ -8,9 +8,10 @@ class AuthFlow extends ConnectedElement {
 
 	async onBeforeEnter(location) {
 		const code = new URLSearchParams(window.location.search).get("code");
-		state.accessToken = await getAccessToken(code);
+		const accessToken = await getAccessToken(code);
+		state.accessToken = accessToken.access_token;
 
-		window.location.href = state.baseUrl;
+		window.location.href = "/";
 	}
 }
 

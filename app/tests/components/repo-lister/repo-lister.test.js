@@ -1,10 +1,9 @@
-import configureInterception from "../configureInterception";
-import { baseUserUrl, expectedRepo } from "../testData";
+import setupTest from "../setupTest";
+import { baseUrl, expectedRepo } from "../testData";
 
 describe("Repo Lister", () => {
 	beforeAll(async () => {
-		configureInterception(page);
-		await page.goto(baseUserUrl);
+		await setupTest(page, baseUrl);
 	});
 
 	it("Loads the expected repos for the given user", async () => {

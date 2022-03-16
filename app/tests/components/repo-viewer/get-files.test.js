@@ -8,10 +8,16 @@ describe("Get Files", () => {
 	it("Calls fetch with expected URL", async () => {
 		const expectedAccount = "foobar";
 		const expectedRepo = "baz";
-		const files = await getFiles(expectedAccount, expectedRepo);
+		const expectedToken = "qux";
+		const files = await getFiles(expectedAccount, expectedRepo, expectedToken);
 
 		expect(global.fetch).toHaveBeenCalledWith(
-			`https://api.github.com/repos/${expectedAccount}/${expectedRepo}/git/trees/main?recursive=1`
+			`https://api.github.com/repos/${expectedAccount}/${expectedRepo}/git/trees/main?recursive=1`,
+			{
+				headers: {
+					Authorization: `token ${expectedToken}`,
+				},
+			}
 		);
 
 		expect(files).toBe(expectedFiles);
