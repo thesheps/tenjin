@@ -1,15 +1,8 @@
-import { css, html, LitElement } from "https://unpkg.com/lit?module";
+import { html, LitElement } from "https://unpkg.com/lit?module";
 import styles from "../../styles/styles.js";
 
 class IntroSplash extends LitElement {
-	static styles = [
-		styles,
-		css`
-			#splash {
-				height: 100vh;
-			}
-		`,
-	];
+	static styles = styles;
 
 	render() {
 		return html`<div id="splash" class="col">
@@ -26,18 +19,6 @@ class IntroSplash extends LitElement {
 					present them in a single, beautiful place 🚀
 				</p>
 			</hgroup>
-
-			<hgroup>
-				<h2>Quickstart?</h2>
-				<p>
-					First things first - Throw your Github account/organisation name into
-					this box. With this we'll be able to go and scrape all of your
-					account/organisation for any publically-available matching docs and
-					work our magic! 🪄
-				</p>
-			</hgroup>
-
-			<github-auth></github-auth>
 		</div>`;
 	}
 }

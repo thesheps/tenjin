@@ -5,3 +5,4 @@ import "./landing-page/index.js";
 import "./nav-bar/index.js";
 import "./repo-lister/index.js";
 import "./repo-viewer/index.js";
+import "./quick-start/index.js";

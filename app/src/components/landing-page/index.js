@@ -16,8 +16,8 @@ class LandingPage extends ConnectedElement {
 			: html`<div></div>`;
 
 		const login = state.account
-			? html`<div>Welcome!</div>`
-			: html`<intro-splash></intro-splash>`;
+			? html`<intro-splash></intro-splash>`
+			: html`<intro-splash></intro-splash><quick-start></quick-start>`;
 
 		return html`<div class="row container">
 			<div class="col-md-3 margin-large">${lister}</div>
