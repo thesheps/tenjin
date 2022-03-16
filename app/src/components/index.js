@@ -1,8 +1,8 @@
 import "./auth-flow/index.js";
+import "./auth-splash/index.js";
 import "./github-auth/index.js";
 import "./intro-splash/index.js";
 import "./landing-page/index.js";
 import "./nav-bar/index.js";
 import "./repo-lister/index.js";
 import "./repo-viewer/index.js";
-import "./quick-start/index.js";

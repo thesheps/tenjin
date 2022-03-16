@@ -11,13 +11,13 @@ class LandingPage extends ConnectedElement {
 	}
 
 	render() {
-		const lister = state.account
+		const lister = state.accessToken
 			? html`<repo-lister></repo-lister>`
 			: html`<div></div>`;
 
-		const login = state.account
-			? html`<intro-splash></intro-splash>`
-			: html`<intro-splash></intro-splash><quick-start></quick-start>`;
+		const login = state.accessToken
+			? html`<auth-splash></intro-splash>`
+			: html`<intro-splash></intro-splash>`;
 
 		return html`<div class="row container">
 			<div class="col-md-3 margin-large">${lister}</div>

@@ -19,6 +19,18 @@ class IntroSplash extends LitElement {
 					present them in a single, beautiful place 🚀
 				</p>
 			</hgroup>
+
+			<hgroup>
+				<h2>Quickstart?</h2>
+				<p>
+					First things first - Throw your Github account/organisation name into
+					this box. With this we'll be able to go and scrape all of your
+					account/organisation for any publically-available matching docs and
+					work our magic! 🪄
+				</p>
+			</hgroup>
+
+			<github-auth></github-auth>
 		</div>`;
 	}
 }
