@@ -24,8 +24,7 @@ class GithubAuth extends ConnectedElement {
 		e.preventDefault();
 		state.account = this.getAccount().value;
 
-		const d = location.hostname.replace(location.host.split(".")[0] + ".", "");
-		const redirectUri = `${location.protocol}//${d}:${location.port}/auth`;
+		const redirectUri = `${location.protocol}//${location.hostname}:${location.port}/auth`;
 		const url = "https://github.com/login/oauth/authorize";
 
 		location.href = `${url}?client_id=${state.clientId}&login=${state.account}&redirect_uri=${redirectUri}`;

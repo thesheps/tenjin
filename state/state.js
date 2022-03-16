@@ -5,4 +5,5 @@ export default createState({
 	repo: "",
 	account: "",
 	accessToken: "",
+	loggedIn: false,
 });

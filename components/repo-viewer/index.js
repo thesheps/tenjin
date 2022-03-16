@@ -37,21 +37,18 @@ class RepoViewer extends ConnectedElement {
 				</option>`
 		);
 
-		return html`<div class="row container">
-			<div class="col-md-3 margin-large"><repo-lister></repo-lister></div>
-			<div class="col">
-				<div id="repo-viewer">
-					<h3>
-						${state.repo}
-						<hr />
-					</h3>
+		return html`<div>
+			<div id="repo-viewer">
+				<h3>
+					${state.repo}
+					<hr />
+				</h3>
 
-					<label for="branch">Branches</label>
-					<select id="branches" required>
-						<option value="">Select a Branch...</option>
-						${branches}
-					</select>
-				</div>
+				<label for="branch">Branches</label>
+				<select id="branches" required>
+					<option value="">Select a Branch...</option>
+					${branches}
+				</select>
 			</div>
 		</div>`;
 	}
