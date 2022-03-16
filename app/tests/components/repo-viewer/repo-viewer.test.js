@@ -1,4 +1,4 @@
-import { expectedBranch, expectedBranches, repoUrl } from "../testData";
+import { expectedBranches, repoUrl } from "../testData";
 import setupTest from "../setupTest";
 
 describe("Repo Viewer", () => {
@@ -17,11 +17,12 @@ describe("Repo Viewer", () => {
 		);
 	});
 
-	it("Preselects the master or main branch", async () => {
-		const repoViewer = await page.$("pierce/#repo-viewer");
-		const selected = await repoViewer.$eval("#branches", (el) => el.value);
+	it("Loads the expected files for the selected branch", async () => {
+		const branch = "dev";
+		await page.select("pierce/#branches", "dev");
 
-		expect(selected).toMatch(expectedBranch.name);
+		const url = await page.url();
+		expect(url).toEqual(`${repoUrl}/${branch}`);
 	});
 
 	afterAll(async () => {
