@@ -23,4 +23,8 @@ describe("Repo Viewer", () => {
 
 		expect(selected).toMatch(expectedBranch.name);
 	});
+
+	afterAll(async () => {
+		await page.evaluate(() => localStorage.clear());
+	});
 });

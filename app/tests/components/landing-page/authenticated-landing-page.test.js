@@ -15,4 +15,8 @@ describe("Authenticated Landing Page", () => {
 		const navbar = await page.$("pierce/#nav-bar");
 		expect(navbar).toBeTruthy();
 	});
+
+	afterAll(async () => {
+		await page.evaluate(() => localStorage.clear());
+	});
 });

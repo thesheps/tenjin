@@ -16,4 +16,8 @@ describe("Unauthenticated Landing Page", () => {
 		const GithubAuth = await page.$("pierce/#github-auth");
 		expect(GithubAuth).toBeTruthy();
 	});
+
+	afterAll(async () => {
+		await page.evaluate(() => localStorage.clear());
+	});
 });

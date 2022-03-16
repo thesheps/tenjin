@@ -16,7 +16,7 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "env-cmd node server.js",
-		"test": "env-cmd jest"
+		"test": "env-cmd jest --run-in-band"
 	},
 	"jest": {
 		"preset": "jest-puppeteer"

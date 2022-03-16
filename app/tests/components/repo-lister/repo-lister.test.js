@@ -13,4 +13,8 @@ describe("Repo Lister", () => {
 
 		expect(repo).toMatch(expectedRepo.name);
 	});
+
+	afterAll(async () => {
+		await page.evaluate(() => localStorage.clear());
+	});
 });
