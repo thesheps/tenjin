@@ -14,9 +14,9 @@
 
 		<br />
 
-		<div class="row container">
+		<div class="row container-fluid">
 			<div class="col-md-4"><repo-lister></repo-lister></div>
-			<div id="outlet" class="container-fluid col"></div>
+			<div id="outlet" class="col-md-8"></div>
 		</div>
 
 		<script type="module">
@@ -27,7 +27,7 @@
 			router.setRoutes([
 				{ path: "/", component: "landing-page" },
 				{ path: "/auth", component: "auth-flow" },
-				{ path: "/:repo", component: "repo-viewer" },
+				{ path: "/:repo/:branch?", component: "repo-viewer" },
 			]);
 		</script>
 

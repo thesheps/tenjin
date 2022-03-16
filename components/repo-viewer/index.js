@@ -16,6 +16,7 @@ class RepoViewer extends ConnectedElement {
 
 	async onBeforeEnter(location) {
 		state.repo = location.params["repo"];
+		state.branch = location.params["branch"];
 
 		if (!state.account || !state.accessToken) window.location.href = "/";
 
@@ -26,29 +27,32 @@ class RepoViewer extends ConnectedElement {
 		);
 	}
 
+	async handleBranchChange(e) {
+		window.location.href = `/${state.repo}/${e.target.value}`;
+	}
+
 	render() {
 		const branches = this.branches.map(
-			(b) =>
-				html`<option
-					selected="${b.name === "main" || b.name === "master"}"
-					value="${b.name}"
-				>
-					${b.name}
-				</option>`
+			(b) => html`<option value="${b.name}">${b.name}</option>`
 		);
+
+		const branchSelector = html`<label for="branch">Branches</label>
+			<select id="branches" required @change="${this.handleBranchChange}">
+				<option value="">Select a Branch...</option>
+				${branches}
+			</select>`;
+
+		const selectedBranch = state.branch ? html` | ${state.branch}` : html``;
 
 		return html`<div>
 			<div id="repo-viewer">
 				<h3>
-					${state.repo}
+					<a href="/${state.repo}">${state.repo}</a>${selectedBranch}
 					<hr />
 				</h3>
 
-				<label for="branch">Branches</label>
-				<select id="branches" required>
-					<option value="">Select a Branch...</option>
-					${branches}
-				</select>
+				${(!state.branch && branchSelector) || ""}
+				${state.branch && html`<file-lister></file-lister>`}
 			</div>
 		</div>`;
 	}

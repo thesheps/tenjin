@@ -8,7 +8,7 @@ class RepoLister extends ConnectedElement {
 	static styles = [
 		styles,
 		css`
-			#repo-lister {
+			#repos {
 				overflow-y: scroll;
 				height: calc(100vh - 30vh);
 			}
@@ -47,7 +47,7 @@ class RepoLister extends ConnectedElement {
 				<hr />
 			</h3>
 
-			<aside>
+			<aside id="repos">
 				<nav>
 					<ul>
 						${repos}

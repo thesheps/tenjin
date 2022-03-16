@@ -25,8 +25,7 @@ class AuthSplash extends LitElement {
 
 				<p>
 					Why don't you take a look and see what docs you're currently exposing
-					to the world? <b>Note: </b>We've pre-selected your <i>main</i> or
-					<i>master</i> branch 'cause we're dead good like that.
+					to the world? 👀
 				</p>
 			</hgroup>
 		</div>`;

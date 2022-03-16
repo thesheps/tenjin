@@ -1,5 +1,6 @@
 import "./auth-flow/index.js";
 import "./auth-splash/index.js";
+import "./file-lister/index.js";
 import "./github-auth/index.js";
 import "./intro-splash/index.js";
 import "./landing-page/index.js";

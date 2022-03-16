@@ -34,7 +34,7 @@ class NavBar extends ConnectedElement {
 
 		const logout = html`<ul>
 			<li>
-				<a href="#" @click="${this.handleClick}">${state.account} - ⏻</a>
+				<a href="#" @click="${this.handleClick}">${state.account} ⏻</a>
 			</li>
 		</ul>`;
 
