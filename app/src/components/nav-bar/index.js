@@ -1,7 +1,10 @@
-import { css, html, LitElement } from "https://unpkg.com/lit?module";
+import { css, html } from "https://unpkg.com/lit?module";
+import { state } from "../../state/index.js";
+import { clear } from "../../state/store.js";
 import styles from "../../styles/styles.js";
+import ConnectedElement from "../connected-element/index.js";
 
-class NavBar extends LitElement {
+class NavBar extends ConnectedElement {
 	static styles = [
 		styles,
 		css`
@@ -15,14 +18,29 @@ class NavBar extends LitElement {
 		`,
 	];
 
+	async handleClick(e) {
+		e.preventDefault();
+		clear();
+
+		location.href = "/";
+	}
+
 	render() {
-		return html`<nav id="nav-bar" class="container-fluid">
-			<ul>
-				<li>
-					<h1><a href="/">Tenjin.</a></h1>
-				</li>
-			</ul>
-		</nav>`;
+		const brand = html`<ul>
+			<li>
+				<h1><a href="/">Tenjin.</a></h1>
+			</li>
+		</ul>`;
+
+		const logout = html`<ul>
+			<li>
+				<a href="#" @click="${this.handleClick}">${state.account} - ⏻</a>
+			</li>
+		</ul>`;
+
+		return state.account
+			? html`<nav id="nav-bar" class="container-fluid">${brand}${logout}</nav>`
+			: html`<nav id="nav-bar" class="container-fluid">${brand}</nav>`;
 	}
 }
 

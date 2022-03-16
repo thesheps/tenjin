@@ -6,3 +6,7 @@ export function get(key) {
 export function set(key, obj) {
 	localStorage.setItem(key, JSON.stringify(obj));
 }
+
+export function clear() {
+	localStorage.clear();
+}

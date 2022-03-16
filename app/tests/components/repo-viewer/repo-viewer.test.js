@@ -4,7 +4,6 @@ import setupTest from "../setupTest";
 describe("Repo Viewer", () => {
 	beforeAll(async () => {
 		await setupTest(page, repoUrl);
-		await page.waitForTimeout(1000);
 	});
 
 	it("Loads the expected branches for the given repo", async () => {
