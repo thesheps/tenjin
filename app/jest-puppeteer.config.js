@@ -1,15 +1,8 @@
 module.exports = {
 	server: { command: "node server.js" },
 	launch: {
-		headless: true,
 		args: ["--disable-web-security"],
+		headless: true, // false
+		// executablePath: "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
 	},
-	// launch: {
-	// 	headless: "false",
-	// 	executablePath:
-	// 		"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-	// 	args: [
-	// 		"--disable-web-security",
-	// 	],
-	// },
 };
