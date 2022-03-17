@@ -1,6 +1,6 @@
 import { css, html } from "https://unpkg.com/lit?module";
 import { state } from "../../state/index.js";
-import { clear } from "../../state/store.js";
+import { clearStore } from "../../state/store.js";
 import styles from "../../styles/styles.js";
 import ConnectedElement from "../connected-element/index.js";
 
@@ -20,7 +20,7 @@ class NavBar extends ConnectedElement {
 
 	async handleClick(e) {
 		e.preventDefault();
-		clear();
+		clearStore();
 
 		location.href = "/";
 	}

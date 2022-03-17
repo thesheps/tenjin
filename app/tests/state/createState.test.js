@@ -1,6 +1,9 @@
-import { get, set } from "../../src/state/store";
-import createState from "../../src/state/createState";
-import dispatchEvent from "../../src/state/dispatchEvent";
+import {
+	createState,
+	dispatchEvent,
+	getStore,
+	setStore,
+} from "../../src/state/index";
 
 jest.mock("../../src/state/dispatchEvent");
 jest.mock("../../src/state/store");
@@ -24,7 +27,7 @@ describe("createState function", () => {
 
 		observableState.foo = "baz";
 		expect(dispatchEvent).toHaveBeenCalled();
-		expect(set).toHaveBeenNthCalledWith(2, "tenjinState", object);
+		expect(setStore).toHaveBeenNthCalledWith(2, "tenjinState", object);
 	});
 
 	it("Rehydrates state from local storage", () => {
@@ -32,6 +35,6 @@ describe("createState function", () => {
 		const observableState = createState(object);
 
 		const output = observableState.foo;
-		expect(get).toHaveBeenNthCalledWith(1, "tenjinState");
+		expect(getStore).toHaveBeenNthCalledWith(1, "tenjinState");
 	});
 });
