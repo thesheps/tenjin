@@ -10,13 +10,24 @@
 	</head>
 
 	<body>
+		<style>
+			html {
+				background: radial-gradient(
+					circle,
+					rgba(18, 25, 31, 1) 0%,
+					rgba(15, 38, 48, 1) 100%,
+					rgba(0, 212, 255, 1) 100%
+				);
+			}
+		</style>
+
 		<nav-bar></nav-bar>
 
 		<br />
 
 		<div class="row container-fluid">
-			<div class="col-md-4"><repo-lister></repo-lister></div>
-			<div id="outlet" class="col-md-8"></div>
+			<repo-lister class="col-md-3"></repo-lister>
+			<div class="col" id="outlet"></div>
 		</div>
 
 		<script type="module">
