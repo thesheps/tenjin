@@ -17,9 +17,9 @@ describe("Repo Viewer", () => {
 		);
 	});
 
-	it("Loads the expected files for the selected branch", async () => {
+	it("Loads the url for the selected branch", async () => {
 		const branch = "dev";
-		await page.select("pierce/#branches", "dev");
+		await page.select("pierce/#branches", branch);
 
 		const url = await page.url();
 		expect(url).toEqual(`${repoUrl}/${branch}`);

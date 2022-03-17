@@ -10,6 +10,7 @@ class NavBar extends ConnectedElement {
 		css`
 			nav {
 				box-shadow: 0 0.2px 0;
+				background: black;
 			}
 
 			a {

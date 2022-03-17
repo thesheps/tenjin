@@ -42,15 +42,9 @@ class RepoViewer extends ConnectedElement {
 				${branches}
 			</select>`;
 
-		const selectedBranch = state.branch ? html` | ${state.branch}` : html``;
-
 		return html`<div>
 			<div id="repo-viewer">
-				<h3>
-					<a href="/${state.repo}">${state.repo}</a>${selectedBranch}
-					<hr />
-				</h3>
-
+				<bread-crumbs></bread-crumbs>
 				${(!state.branch && branchSelector) || ""}
 				${state.branch && html`<file-lister></file-lister>`}
 			</div>
