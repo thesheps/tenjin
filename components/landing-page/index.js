@@ -7,6 +7,8 @@ class LandingPage extends ConnectedElement {
 	static styles = styles;
 
 	async onBeforeEnter(location) {
+		state.branch = "";
+		state.file = "";
 		state.repo = location.params["repo"];
 	}
 

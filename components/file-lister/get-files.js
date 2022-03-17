@@ -8,5 +8,5 @@ export default async function (user, repo, branch, accessToken) {
 
 	const json = await response.json();
 
-	return json.tree.filter((f) => f.path.endsWith(".md")).map((f) => f.path);
+	return json.tree.filter((f) => f.path.endsWith(".md"));
 }

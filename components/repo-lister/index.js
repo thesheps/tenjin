@@ -28,7 +28,10 @@ class RepoLister extends ConnectedElement {
 
 	async firstUpdated() {
 		super.firstUpdated();
+		await this.fetchRepos();
+	}
 
+	async fetchRepos() {
 		if (state.accessToken) {
 			this.repos = await getRepos(state.account, state.accessToken);
 		}
@@ -43,7 +46,7 @@ class RepoLister extends ConnectedElement {
 
 		const yourRepos = html`<div id="repo-lister">
 			<h3>
-				Your repos
+				Your repos <a href="#" @click="${() => this.fetchRepos()}">↻</a>
 				<hr />
 			</h3>
 
