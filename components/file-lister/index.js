@@ -1,7 +1,7 @@
 import { html } from "https://unpkg.com/lit?module";
 import { state } from "../../state/index.js";
-import getFiles from "./get-files.js";
 import styles from "../../styles/styles.js";
+import getFiles from "./get-files.js";
 import ConnectedElement from "../connected-element/index.js";
 
 class FileLister extends ConnectedElement {

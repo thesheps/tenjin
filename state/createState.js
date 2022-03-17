@@ -1,11 +1,11 @@
 import dispatchEvent from "./dispatchEvent.js";
-import { get, set } from "./store.js";
+import { getStore, setStore } from "./store.js";
 
 export default function (obj) {
-	let state = get("tenjinState");
+	let state = getStore("tenjinState");
 
 	if (!state) {
-		set("tenjinState", obj);
+		setStore("tenjinState", obj);
 	} else {
 		Object.assign(obj, state);
 	}
@@ -15,7 +15,7 @@ export default function (obj) {
 			if (o[p] == value) return true;
 
 			o[p] = value;
-			set("tenjinState", obj);
+			setStore("tenjinState", obj);
 
 			dispatchEvent(
 				new Event("STATE_UPDATED", {
