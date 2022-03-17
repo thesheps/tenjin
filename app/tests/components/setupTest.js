@@ -34,6 +34,7 @@ export default async (page, url) => {
 			JSON.stringify({
 				account: "my-lovely-account",
 				accessToken: "my-lovely-token",
+				loggedIn: true,
 			})
 		)
 	);
