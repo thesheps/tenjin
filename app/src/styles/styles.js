@@ -5,11 +5,18 @@ export default [
 	styles,
 	css`
 		a {
-			color: lightGray;
+			color: darkGray;
+			text-decoration: none;
 		}
 
 		a:hover {
 			color: white;
+			text-decoration: none;
+		}
+
+		a:active {
+			color: white;
+			text-decoration: none;
 		}
 	`,
 ];

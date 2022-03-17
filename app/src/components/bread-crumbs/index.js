@@ -12,12 +12,7 @@ class BreadCrumbs extends ConnectedElement {
 					<a href="/${state.repo}/${state.branch}">${state.branch}</a>`
 			: html``;
 
-		const selectedFile = state.file
-			? html` |
-					<a href="/${state.repo}/${state.branch}/${state.file}"
-						>${state.file}</a
-					>`
-			: html``;
+		const selectedFile = state.file ? html` | ${state.file}` : html``;
 
 		return html`<h3 id="bread-crumbs">
 			<a href="/${state.repo}">${state.repo}</a>${selectedBranch}${selectedFile}

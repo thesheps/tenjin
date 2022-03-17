@@ -7,22 +7,15 @@ import ConnectedElement from "../connected-element/index.js";
 class FileLister extends ConnectedElement {
 	static styles = styles;
 
-	static get properties() {
-		return {
-			files: { type: Array, state: true },
-		};
-	}
-
 	constructor() {
 		super();
-		this.files = [];
 	}
 
 	async firstUpdated() {
 		super.firstUpdated();
 
 		if (state.accessToken) {
-			this.files = await getFiles(
+			state.files = await getFiles(
 				state.account,
 				state.repo,
 				state.branch,
@@ -32,9 +25,11 @@ class FileLister extends ConnectedElement {
 	}
 
 	render() {
-		const files = this.files.map(
+		const files = state.files.map(
 			(f) => html`<li>
-				<a class="file" href="#">${f}</a>
+				<a class="file" href="/${state.repo}/${state.branch}/${f.sha}"
+					>${f.path}</a
+				>
 			</li>`
 		);
 

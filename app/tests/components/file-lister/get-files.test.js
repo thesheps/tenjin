@@ -1,6 +1,10 @@
 import getFiles from "../../../src/components/file-lister/get-files";
 
-const expectedFiles = [{ path: "foo" }, { path: "bar" }, { path: "baz.md" }];
+const expectedFiles = [
+	{ path: "foo", url: "path-to-foo" },
+	{ path: "bar", url: "path-to-bar" },
+	{ path: "baz.md", url: "path-to-baz.md" },
+];
 const json = jest.fn().mockReturnValue({ tree: expectedFiles });
 global.fetch = jest.fn(() => Promise.resolve({ json }));
 
@@ -33,6 +37,6 @@ describe("Get Files", () => {
 	});
 
 	it("Filters out any non-markdown files", async () => {
-		expect(files).toEqual(["baz.md"]);
+		expect(files).toEqual([{ path: "baz.md", url: "path-to-baz.md" }]);
 	});
 });

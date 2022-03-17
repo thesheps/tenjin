@@ -15,6 +15,7 @@ class RepoViewer extends ConnectedElement {
 	}
 
 	async onBeforeEnter(location) {
+		state.file = "";
 		state.repo = location.params["repo"];
 		state.branch = location.params["branch"];
 
@@ -31,21 +32,23 @@ class RepoViewer extends ConnectedElement {
 		window.location.href = `/${state.repo}/${e.target.value}`;
 	}
 
-	render() {
+	getBranchSelector() {
 		const branches = this.branches.map(
 			(b) => html`<option value="${b.name}">${b.name}</option>`
 		);
 
-		const branchSelector = html`<label for="branch">Branches</label>
+		return html`<label for="branch">Branches</label>
 			<select id="branches" required @change="${this.handleBranchChange}">
 				<option value="">Select a Branch...</option>
 				${branches}
 			</select>`;
+	}
 
+	render() {
 		return html`<div>
 			<div id="repo-viewer">
 				<bread-crumbs></bread-crumbs>
-				${(!state.branch && branchSelector) || ""}
+				${(!state.branch && this.getBranchSelector()) || ""}
 				${state.branch && html`<file-lister></file-lister>`}
 			</div>
 		</div>`;
