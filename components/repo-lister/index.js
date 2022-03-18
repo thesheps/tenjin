@@ -1,7 +1,7 @@
 import { css, html } from "https://unpkg.com/lit?module";
 import { state } from "../../state/index.js";
+import { getRepos } from "../../api/index.js";
 import styles from "../../styles/styles.js";
-import getRepos from "./get-repos.js";
 import ConnectedElement from "../connected-element/index.js";
 
 class RepoLister extends ConnectedElement {

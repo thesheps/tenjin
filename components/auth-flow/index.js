@@ -1,7 +1,7 @@
 import { html } from "https://unpkg.com/lit?module";
 import { state } from "../../state/index.js";
+import { getAccessToken } from "../../api/index.js";
 import styles from "../../styles/styles.js";
-import getAccessToken from "./get-access-token.js";
 import ConnectedElement from "../connected-element/index.js";
 
 class AuthFlow extends ConnectedElement {
