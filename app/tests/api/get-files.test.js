@@ -1,4 +1,4 @@
-import getFiles from "../../../src/components/file-lister/get-files";
+import { getFiles } from "../../src/api/index";
 
 const expectedFiles = [
 	{ path: "foo", url: "path-to-foo" },

@@ -1,4 +1,4 @@
-import getBranches from "../../../src/components/repo-viewer/get-branches";
+import { getBranches } from "../../src/api/index";
 
 const expectedBranches = [{ name: "foo" }];
 const json = jest.fn().mockReturnValue(expectedBranches);

@@ -1,7 +1,7 @@
 import { html } from "https://unpkg.com/lit?module";
 import { state } from "../../state/index.js";
+import { getBranches } from "../../api/index.js";
 import styles from "../../styles/styles.js";
-import getBranches from "./get-branches.js";
 import ConnectedElement from "../connected-element/index.js";
 
 class RepoViewer extends ConnectedElement {
