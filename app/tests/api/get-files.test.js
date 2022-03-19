@@ -5,8 +5,11 @@ const expectedFiles = [
 	{ path: "bar", url: "path-to-bar" },
 	{ path: "baz.md", url: "path-to-baz.md" },
 ];
+
 const json = jest.fn().mockReturnValue({ tree: expectedFiles });
-global.fetch = jest.fn(() => Promise.resolve({ json }));
+global.fetch = jest.fn(() => Promise.resolve({ json, status: 200 }));
+
+jest.mock("../../src/api/log-out");
 
 describe("Get Files", () => {
 	const expectedAccount = "foobar";

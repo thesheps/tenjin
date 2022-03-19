@@ -2,7 +2,9 @@ import { getBranches } from "../../src/api/index";
 
 const expectedBranches = [{ name: "foo" }];
 const json = jest.fn().mockReturnValue(expectedBranches);
-global.fetch = jest.fn(() => Promise.resolve({ json }));
+global.fetch = jest.fn(() => Promise.resolve({ json, status: 200 }));
+
+jest.mock("../../src/api/log-out");
 
 describe("Get Branches", () => {
 	it("Calls fetch with expected URL", async () => {

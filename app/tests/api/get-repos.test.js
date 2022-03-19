@@ -1,7 +1,9 @@
-import { getRepos } from "../../src/api/index";
+import getRepos from "../../src/api/get-repos";
 
 const json = jest.fn();
-global.fetch = jest.fn(() => Promise.resolve({ json }));
+global.fetch = jest.fn(() => Promise.resolve({ json, status: 200 }));
+
+jest.mock("../../src/api/log-out");
 
 describe("Get Repos", () => {
 	it("Calls fetch with expected URL", async () => {

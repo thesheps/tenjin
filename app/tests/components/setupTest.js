@@ -13,12 +13,14 @@ export default async (page, url) => {
 				request.respond({
 					headers: { "Access-Control-Allow-Origin": "*" },
 					body: JSON.stringify([expectedRepo]),
+					status: 200,
 				});
 				break;
 			case branchesUrl:
 				request.respond({
 					headers: { "Access-Control-Allow-Origin": "*" },
 					body: JSON.stringify(expectedBranches),
+					status: 200,
 				});
 				break;
 			default:
