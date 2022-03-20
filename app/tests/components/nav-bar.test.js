@@ -1,5 +1,5 @@
-const { repoUrl } = require("../testData");
-import setupTest from "../setupTest";
+const { repoUrl } = require("./testData");
+import setupTest from "./setupTest";
 
 describe("Navbar", () => {
 	beforeAll(async () => {

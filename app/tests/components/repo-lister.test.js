@@ -1,5 +1,5 @@
-import setupTest from "../setupTest";
-import { baseUrl, expectedRepo } from "../testData";
+import setupTest from "./setupTest";
+import { baseUrl, expectedRepo } from "./testData";
 
 describe("Repo Lister", () => {
 	beforeAll(async () => {

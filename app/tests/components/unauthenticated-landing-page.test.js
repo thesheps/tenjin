@@ -1,4 +1,4 @@
-const { baseUrl } = require("../testData");
+const { baseUrl } = require("./testData");
 
 describe("Unauthenticated Landing Page", () => {
 	beforeAll(async () => {

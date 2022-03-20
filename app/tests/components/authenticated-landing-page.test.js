@@ -1,5 +1,5 @@
-const { baseUrl } = require("../testData");
-import setupTest from "../setupTest";
+const { baseUrl } = require("./testData");
+import setupTest from "./setupTest";
 
 describe("Authenticated Landing Page", () => {
 	beforeAll(async () => {

@@ -1,5 +1,5 @@
-import { expectedBranches, repoUrl } from "../testData";
-import setupTest from "../setupTest";
+import { expectedBranches, repoUrl } from "./testData";
+import setupTest from "./setupTest";
 
 describe("Repo Viewer", () => {
 	beforeAll(async () => {

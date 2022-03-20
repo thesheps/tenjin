@@ -1,4 +1,4 @@
-import { baseUrl, expectedAccount } from "../testData";
+import { baseUrl, expectedAccount } from "./testData";
 
 describe("Github Auth", () => {
 	it("Redirects the user to the correct page", async () => {
